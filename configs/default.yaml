@@ -1,0 +1,49 @@
+# Arthedain Default Configuration
+# dual-timescale-hebbian-snn
+
+model:
+  input_size: 100
+  hidden_size: 128
+  output_size: 2
+  sparse_init: true
+  sparse_p: 0.15
+
+lif:
+  tau: 20.0          # membrane time constant (ms) - also supports tau_m
+  v_th: 1.0
+  v_reset: 0.0
+  refractory: 2
+  dt: 1.0
+
+hebbian:
+  tau_fast: 5.0        # ~100ms at 1ms/step
+  tau_slow: 50.0       # ~700ms at 1ms/step
+  alpha: 0.7
+  beta: 0.3
+  lr: 1.0e-3
+  weight_clip: 1.0
+  trace_clip: 10.0
+
+training:
+  mode: supervised     # supervised | reward | self_supervised
+  lr_readout: 2.0e-3
+  lr_recurrent: 5.0e-5
+  lr_input: 0.0
+  grad_clip: 1.0
+  log_every: 200
+
+data:
+  stream: bci_velocity
+  T: 2000
+  noise: 0.1
+  seed: 42
+  synthetic_freq: 50.0  # frequency for synthetic data generation
+
+readout:
+  mode: direct        # "direct" or "smoothed"
+  smooth_tau: 5.0      # smoothing time constant for EMA
+
+experiment:
+  seed: 42
+  save_plots: true
+  results_dir: results/

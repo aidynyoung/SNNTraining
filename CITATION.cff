@@ -1,0 +1,34 @@
+cff-version: 1.2.0
+title: "SNNTraining: Biologically-Plausible Training for Spiking Neural Networks"
+message: "If you use this software, please cite it using the metadata below."
+type: software
+authors:
+  - family-names: Young
+    given-names: Aiden
+    alias: Aidistides
+    orcid: ""
+repository-code: "https://github.com/Aidistides/SNNTraining"
+url: "https://github.com/Aidistides/SNNTraining"
+abstract: >
+  A complete SNN training library implementing every biologically-plausible learning
+  rule that works in practice. Core: LIF neurons, RSNN reservoir (Dale's law, STP,
+  structural plasticity), dual-timescale Hebbian eligibility traces, and a full HDC
+  (Hyperdimensional Computing) classification layer. Achieves Pearson R=0.81 on BCI
+  velocity decoding and 78% on SHD neuromorphic classification — both at O(1) memory
+  with no backpropagation. Includes 1582 indexed papers, hardware export (Loihi 2,
+  FPGA, MCU), and 1621 passing tests.
+keywords:
+  - spiking-neural-networks
+  - online-learning
+  - hebbian-learning
+  - eligibility-traces
+  - hyperdimensional-computing
+  - brain-computer-interface
+  - neural-decoding
+  - neuromorphic
+  - edge-ai
+  - fpga
+  - no-backpropagation
+license: MIT
+version: "1.0.0"
+date-released: "2026-05-23"

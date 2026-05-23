@@ -1,0 +1,20 @@
+torch>=2.0.0
+numpy>=1.24.0
+matplotlib>=3.7.0
+pyyaml>=6.0
+requests>=2.31.0
+
+# testing
+pytest>=7.0.0
+
+# optional — real datasets
+# scipy>=1.10.0       # Indy .mat loader (BCI benchmark)
+# h5py>=3.8.0         # SHD neuromorphic dataset
+# nlb-tools>=0.1.5    # MC Maze via NWB
+
+# optional — research semantic search
+# anthropic>=0.40.0               # Claude for RAG over paper library
+# sentence-transformers>=3.0.0    # local embeddings (no API key needed)
+
+# optional — PDF extraction for paper ingestion
+# pymupdf>=1.24.0                 # pip install pymupdf

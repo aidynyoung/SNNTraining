@@ -1,0 +1,36 @@
+continue/
+.claude/
+.continue/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+
+# Research data — Zotero library + embedding index (can be 100+ MB)
+research/data/
+
+# Large neuromorphic datasets — download separately
+data/shd/
+data/mnist/
+
+# Checkpoints and results
+checkpoints/
+results/plots/
+*.pt
+*.pth
+hdc_learner_state.pt
+hdc_zotero_seen.json
+
+# Environment / secrets
+.env
+.env.*
+*.env
+
+# OS
+.DS_Store
+*.log
