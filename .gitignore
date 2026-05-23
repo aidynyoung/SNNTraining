@@ -26,6 +26,9 @@ results/plots/
 hdc_learner_state.pt
 hdc_zotero_seen.json
 
+# User-local config override (canonical defaults are in configs/default.yaml)
+config.yaml
+
 # Environment / secrets
 .env
 .env.*
