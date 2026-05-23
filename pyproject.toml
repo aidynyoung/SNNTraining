@@ -27,11 +27,11 @@ dev = ["pytest>=7.0", "pytest-cov", "matplotlib>=3.7"]
 datasets = ["scipy>=1.10", "h5py>=3.8"]
 
 [project.scripts]
-snntraining = "arthedain.__main__:main"
+snntraining = "snntraining.__main__:main"
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["arthedain*", "models*", "training*", "data*", "hardware*", "hdc*", "sensors*", "core*"]
+include = ["snntraining*", "models*", "training*", "data*", "hardware*", "hdc*", "sensors*", "core*"]
 exclude = ["tests*", "experiments*", "notebooks*", "results*", "checkpoints*"]
 
 [tool.pytest.ini_options]

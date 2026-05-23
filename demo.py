@@ -15,11 +15,8 @@ Uses the real HDCC classifier from the codebase.
 """
 
 import torch
-import numpy as np
-import sys
 
 from hdc.hdcc_compiler import HDCCClassifier
-from hdc.hdc_glue import hv_hamming_sim, hv_majority, gen_hvs
 
 
 # ── Demo ─────────────────────────────────────────────────────────────────────
@@ -79,7 +76,7 @@ def demo_online_learning():
     for cls in range(n_classes):
         for _ in range(n_test // n_classes):
             x = torch.randn(n_features) * 0.3 + cls * 0.5
-            pred, sims = model.predict(x)
+            pred, _ = model.predict(x)
             if pred == cls:
                 correct += 1
     
@@ -208,43 +205,12 @@ def demo_why_snntraining():
   • MCU-deployable (mW power budget)
   """)
 
-def demo_roadmap():
-    """Show the path to $500M."""
-    print_header("5. The Path to $500M")
-    
-    print(f"""
-  ┌─────────────────────────────────────────────────────────────────────┐
-  │                    SNNTraining — $500M Roadmap                        │
-  ├──────────────────────┬──────────────────┬───────────────────────────┤
-  │ Phase                │ Timeline         │ Milestone                 │
-  ├──────────────────────┼──────────────────┼───────────────────────────┤
-  │ Open Source          │ 2025-2026        │ Community, benchmarks     │
-  │ Enterprise Pilots    │ 2026             │ 5 customers @ $100K/yr    │
-  │ Defense Contracts    │ 2026-2027        │ $5-50M per program        │
-  │ Hardware Partnership │ 2027-2028        │ Loihi 2, custom ASIC      │
-  │ $500M Valuation      │ 2028             │ 100+ enterprise customers │
-  └──────────────────────┴──────────────────┴───────────────────────────┘
-  
-  Market: $1.2T edge AI by 2030
-  - Implantable BCIs: $6B
-  - Defense ISR: $40B
-  - Industrial IoT: $300B
-  - Autonomous Robotics: $200B
-  - Medical Devices: $100B
-  
-  Competitive Moat:
-  1. Physics: XOR is 46× cheaper than MAC (permanent advantage)
-  2. No backpropagation: RefineHD is single-pass (no one else does this)
-  3. Fault tolerance: 100% at 10% faults (transformers crash)
-  4. Scaling: O(d) vs O(d²) (advantage grows with model size)
-  """)
-
 def main():
     """Run the full SNNTraining demo."""
     print()
     print("╔══════════════════════════════════════════════════════════════╗")
     print("║                                                              ║")
-    print("║              A R T H E D A I N   D E M O                     ║")
+    print("║           S N N T r a i n i n g   D e m o                    ║")
     print("║                                                              ║")
     print("║  22,992× Less Energy Than Transformers                       ║")
     print("║  Same Accuracy. No Backpropagation.                          ║")
@@ -256,13 +222,11 @@ def main():
     print("  2. Fault tolerance (100% accuracy under 10% faults)")
     print("  3. Energy comparison (22,992× less than transformer)")
     print("  4. Why SNNTraining wins")
-    print("  5. The path to $500M")
-    
-    model, accuracy = demo_online_learning()
+
+    _, accuracy = demo_online_learning()
     demo_fault_tolerance()
     demo_energy_comparison()
     demo_why_snntraining()
-    demo_roadmap()
     
     print_header("Summary")
     print(f"""
