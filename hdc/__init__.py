@@ -880,37 +880,29 @@ __all__ += [
     "PhysicalAIPipeline",
 ]
 
-# ── Physical AI Hybrid — HDC-only integration (no transformers) ───────────────
-
-from hdc.physical_ai_hybrid import (
-    DenseToHV,
-    AdaptiveModalityFusion,
-    ResonatorAttractor,
-    FractionalInterpolator,
-    MultiSpaceSync,
-    EnsembleUncertainty,
-    ExperienceConsolidation,
-    HybridPhysicalAIPipeline,
-)
-
-__all__ += [
-    # JL random projection (Rahimi 2017)
-    "DenseToHV",
-    # Error-weighted modality bundling (Schlegel 2024)
-    "AdaptiveModalityFusion",
-    # Resonator as HDC-native recurrent predictor (Kleyko 2022)
-    "ResonatorAttractor",
-    # Fractional binding for continuous temporal prediction (Verges Boncompte 2024)
-    "FractionalInterpolator",
-    # Dual-space Hamming+FPE divergence (Kleyko/Davies 2022)
-    "MultiSpaceSync",
-    # Multi-seed ensemble uncertainty (Kleyko 2023 Survey)
-    "EnsembleUncertainty",
-    # Weighted-bundle replay consolidation (Schlegel 2024)
-    "ExperienceConsolidation",
-    # Full HDC-only hybrid pipeline
-    "HybridPhysicalAIPipeline",
-]
+try:
+    from hdc.physical_ai_hybrid import (
+        DenseToHV,
+        AdaptiveModalityFusion,
+        ResonatorAttractor,
+        FractionalInterpolator,
+        MultiSpaceSync,
+        EnsembleUncertainty,
+        ExperienceConsolidation,
+        HybridPhysicalAIPipeline,
+    )
+    __all__ += [
+        "DenseToHV",
+        "AdaptiveModalityFusion",
+        "ResonatorAttractor",
+        "FractionalInterpolator",
+        "MultiSpaceSync",
+        "EnsembleUncertainty",
+        "ExperienceConsolidation",
+        "HybridPhysicalAIPipeline",
+    ]
+except ImportError:
+    pass
 
 # ── World Context: Pattern Memory + Causal Graph + Hierarchical Context ────────
 

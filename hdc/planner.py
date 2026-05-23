@@ -54,9 +54,13 @@ from hdc.world_context import (
     ContextualWorldModel, CausalTransitionGraph, SequencePatternMemory,
     PatternMatch,
 )
-from hdc.physical_ai_hybrid import (
-    HybridPhysicalAIPipeline, EnsembleUncertainty,
-)
+try:
+    from hdc.physical_ai_hybrid import (
+        HybridPhysicalAIPipeline, EnsembleUncertainty,
+    )
+except ImportError:
+    HybridPhysicalAIPipeline = None  # type: ignore
+    EnsembleUncertainty = None  # type: ignore
 from hdc.sensor_stream import SensorReading, SensorStreamBuffer
 from hdc.hdc_glue import hv_batch_sim, gen_hvs
 

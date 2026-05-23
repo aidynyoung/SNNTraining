@@ -57,7 +57,11 @@ from hdc.hdc_glue import hv_batch_sim, gen_hvs
 from hdc.physics_world_model import (
     PhysicsWorldModel, ActionCandidate, _hamming, _xor, _majority,
 )
-from hdc.physical_ai_hybrid import EnsembleUncertainty, HybridPhysicalAIPipeline
+try:
+    from hdc.physical_ai_hybrid import EnsembleUncertainty, HybridPhysicalAIPipeline
+except ImportError:
+    EnsembleUncertainty = None  # type: ignore
+    HybridPhysicalAIPipeline = None  # type: ignore
 from hdc.world_context import ContextualWorldModel, SequencePatternMemory
 from hdc.planner import SelfImprovementLoop, AdaptiveHebbian
 

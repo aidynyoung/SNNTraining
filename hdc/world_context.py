@@ -62,9 +62,14 @@ from hdc.kleyko_framework import VSARecord, VSAGraph
 from hdc.physics_world_model import (
     PhysicsWorldModel, _xor, _majority, _hamming, MultiHorizonPredictor,
 )
-from hdc.physical_ai_hybrid import (
-    HybridPhysicalAIPipeline, AdaptiveModalityFusion, ResonatorAttractor,
-)
+try:
+    from hdc.physical_ai_hybrid import (
+        HybridPhysicalAIPipeline, AdaptiveModalityFusion, ResonatorAttractor,
+    )
+except ImportError:
+    HybridPhysicalAIPipeline = None  # type: ignore
+    AdaptiveModalityFusion = None  # type: ignore
+    ResonatorAttractor = None  # type: ignore
 from hdc.sensor_stream import SensorReading, SensorSpec
 
 

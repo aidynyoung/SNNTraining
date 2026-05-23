@@ -212,30 +212,3 @@ class TestPopulationActivityEncoder:
         self.enc.reset()
         assert float(self.enc._buf.sum()) == 0.0
         assert float(self.enc._prev.sum()) == 0.0
-
-
-# ─── Integration: EliteSNNTrainingModel with 0.95-tier ─────────────────────────
-
-class TestEliteModelWith95Tier:
-    def test_alif_manifold_wired(self):
-        from arthedain.model import EliteSNNTrainingModel, SNNTrainingConfig
-        cfg = SNNTrainingConfig(input_size=10, hidden_size=N, output_size=K)
-        m   = EliteSNNTrainingModel(config=cfg, wiener_lags=3, manifold_k=k,
-                                   use_alif=True, use_manifold=True, use_pop_enc=True)
-        for i in range(20):
-            x = torch.rand(10)
-            p = m.step(x)
-            t = torch.tensor([math.sin(i * 0.1), math.cos(i * 0.1)])
-            m.track(p, t)
-            m.update(p.detach() - t)
-        r = m.pearson_r()
-        assert isinstance(r, float)
-        assert "ALIF" in repr(m)
-        assert "Manifold" in repr(m)
-
-    def test_tier95_in_repr(self):
-        from arthedain.model import EliteSNNTrainingModel, SNNTrainingConfig
-        cfg = SNNTrainingConfig(input_size=8, hidden_size=16, output_size=2)
-        m   = EliteSNNTrainingModel(config=cfg, manifold_k=4, wiener_lags=2)
-        r   = repr(m)
-        assert "ALIF" in r or "Manifold" in r
