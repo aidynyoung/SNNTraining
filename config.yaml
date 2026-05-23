@@ -1,4 +1,4 @@
-# Arthedain Configuration
+# SNNTraining Configuration
 # Dual-Timescale Hebbian SNN Parameters
 
 # Model Architecture
@@ -88,30 +88,6 @@ force:
   max_alpha_rls: 2.0         # Maximum alpha
   skip_below_error: 0.001    # Skip RLS update when error norm below this
   error_window: 100          # Window for computing error variance
-
-# ── Zotero Self-Learning ─────────────────────────────────────────────────────
-# Arthedain continuously pulls papers from the HDC/VSA Zotero collection and
-# improves itself via HDC-native online learning (no backprop).
-#
-# Required env vars:
-#   ZOTERO_API_KEY    — generate at https://www.zotero.org/settings/keys/new
-#   ZOTERO_LIBRARY_ID — numeric user ID from https://www.zotero.org/settings/keys
-#   ZOTERO_LIBRARY_TYPE — "user" (default) or "group"
-#
-# Run:
-#   python -m hdc.zotero_learner --sync      # one-shot fetch
-#   python -m hdc.zotero_learner --watch     # continuous loop
-#   python -m hdc.zotero_learner --query "resonator networks"
-#   python -m hdc.zotero_learner --recommend # print config suggestions
-zotero:
-  collection_key:      "JTV8PX3T"
-  library_type:        "user"
-  poll_interval_secs:  3600       # 1 hour
-  batch_size:          25
-  hd_dim:              4096
-  state_path:          "hdc_learner_state.pt"
-  seen_cache:          "hdc_zotero_seen.json"
-  max_abstract_chars:  3000
 
 # ── Kleyko 2022 VSA Framework ─────────────────────────────────────────────────
 # Data structures, search, Turing completeness, and hardware mapping
