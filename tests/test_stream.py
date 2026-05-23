@@ -20,7 +20,7 @@ import pytest
 import torch
 import math
 
-from snntraining.stream import WorldModelStream, StreamResult
+from arthedain.stream import WorldModelStream, StreamResult
 
 
 D_INPUT = 6    # small for fast tests
@@ -298,7 +298,7 @@ class TestStreamResultSummary:
 # ══════════════════════════════════════════════════════════════════════════════
 
 def test_import_via_package():
-    import snntraining
+    import arthedain
     WMS = snntraining.WorldModelStream
     wms = WMS(input_dim=4, hd_dim=128)
     r = wms.step(torch.randn(4))
@@ -369,7 +369,7 @@ class TestUtilityMethods:
 # 11. WorldModelReadout
 # ══════════════════════════════════════════════════════════════════════════════
 
-from snntraining.stream import WorldModelReadout
+from arthedain.stream import WorldModelReadout
 
 
 class TestWorldModelReadout:
@@ -405,7 +405,7 @@ class TestWorldModelReadout:
         assert r2 > 0.9   # should be near-perfect for exact linear data
 
     def test_import_readout_from_package(self):
-        import snntraining
+        import arthedain
         assert hasattr(snntraining, 'WorldModelReadout')
 
 

@@ -7,7 +7,7 @@ SuperSpikeSTDP, IntrinsicPlasticity, KalmanReadout, RLSReadout, WienerReadout.
 """
 import pytest
 import torch
-from snntraining.model import EliteSNNTrainingModel, SNNTrainingConfig
+from arthedain.model import EliteSNNTrainingModel, SNNTrainingConfig
 from models.hebbian import (
     BCMHebbian, ThreeFactorRule, EWCRegularizer,
     SuperSpikeSTDP, IntrinsicPlasticity, ForceRecurrentLearner,

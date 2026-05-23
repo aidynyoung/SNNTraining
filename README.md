@@ -5,7 +5,6 @@
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](pyproject.toml)
 [![Tests](https://img.shields.io/badge/tests-1621%20passing-brightgreen)](tests/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![arXiv](https://img.shields.io/badge/research-1582%20papers%20indexed-orange)](research/)
 
 Spiking neural networks fire spikes, not floats. This changes everything about how you train them. This library implements every biologically-plausible learning rule that actually works, plus a full HDC (Hyperdimensional Computing) layer for classification — the only stack that runs at 2.4 nJ/inference, learns online, and tolerates hardware faults.
 
@@ -16,7 +15,7 @@ No backpropagation through time. No replay buffer. No GPU required.
 ## Install
 
 ```bash
-git clone https://github.com/Aidistides/SNNTraining
+git clone https://github.com/Aidynyoung/SNNTraining
 cd SNNTraining
 pip install -r requirements.txt
 python demo.py
@@ -489,20 +488,9 @@ This is the three-factor rule: `ΔW_ij = η · e_ij · M`, where `e_ij` is the e
   title   = {SNNTraining: Biologically-Plausible Training for Spiking Neural Networks},
   author  = {Young, Aiden},
   year    = {2026},
-  url     = {https://github.com/Aidistides/SNNTraining}
+  url     = {https://github.com/Aidynyoung/SNNTraining}
 }
 ```
-
-The HDC components are based on 75+ paper implementations. Key references:
-
-- Bellec et al. (2020). "A solution to the learning dilemma for recurrent networks of spiking neurons." *Nature Communications*.
-- Nicola & Clopath (2017). "Supervised learning in spiking neural networks with FORCE training." *Nature Communications*.
-- Harun & Kanan (2025). "A Good Start Matters: Enhancing Continual Learning with Data-Driven Weight Initialization." *CoLLAs 2025*.
-- Perez-Nieves et al. (2021). "Neural heterogeneity promotes robust learning." *Nature Communications*.
-- Zhao et al. (2026). "Test-time threshold adaptation for spiking networks." *arXiv:2505.05375*.
-- Imani et al. (2022). "NeuralHD / DistHD." *DAC 2022*.
-- Kleyko et al. (2022). "A Survey on Hyperdimensional Computing." *IEEE TNNLS*.
-- Mitrokhin, Sutor et al. (2019). "Learning sensorimotor control with neuromorphic sensors." *Science Robotics*.
 
 ---
 

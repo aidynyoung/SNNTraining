@@ -218,7 +218,7 @@ class TestPopulationActivityEncoder:
 
 class TestEliteModelWith95Tier:
     def test_alif_manifold_wired(self):
-        from snntraining.model import EliteSNNTrainingModel, SNNTrainingConfig
+        from arthedain.model import EliteSNNTrainingModel, SNNTrainingConfig
         cfg = SNNTrainingConfig(input_size=10, hidden_size=N, output_size=K)
         m   = EliteSNNTrainingModel(config=cfg, wiener_lags=3, manifold_k=k,
                                    use_alif=True, use_manifold=True, use_pop_enc=True)
@@ -234,7 +234,7 @@ class TestEliteModelWith95Tier:
         assert "Manifold" in repr(m)
 
     def test_tier95_in_repr(self):
-        from snntraining.model import EliteSNNTrainingModel, SNNTrainingConfig
+        from arthedain.model import EliteSNNTrainingModel, SNNTrainingConfig
         cfg = SNNTrainingConfig(input_size=8, hidden_size=16, output_size=2)
         m   = EliteSNNTrainingModel(config=cfg, manifold_k=4, wiener_lags=2)
         r   = repr(m)

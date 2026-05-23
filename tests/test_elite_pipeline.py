@@ -9,7 +9,7 @@ status() report, reset(), and end-to-end step behavior.
 from __future__ import annotations
 import pytest
 import torch
-from snntraining.elite_pipeline import EliteSNNTrainingPipeline, PipelineConfig
+from arthedain.elite_pipeline import EliteSNNTrainingPipeline, PipelineConfig
 
 
 # Minimal config to keep tests fast
