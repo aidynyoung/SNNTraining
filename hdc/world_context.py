@@ -1,7 +1,7 @@
 """
 World Context: Pattern Memory, Causal Reasoning, Hierarchical Context
 ======================================================================
-Bridges three existing Arthedain modules — HoloGN, VSAGraph, and the
+Bridges three existing SNNTraining modules — HoloGN, VSAGraph, and the
 PhysicsWorldModel — to give the world model what it currently lacks:
 
   1. **SequencePatternMemory** — recognises *recurring temporal patterns*

@@ -1,5 +1,5 @@
 """
-HDC Module for Arthedain
+HDC Module for SNNTraining
 =====================
 Hyperdimensional Computing extensions based on:
 "Brain-Inspired Hyperdimensional Computing for Ultra-Efficient Edge AI"
@@ -142,7 +142,7 @@ from hdc.hdcc_compiler import (
 
 from hdc.world_model import (
     WorldModelConfig,
-    ArthedainWorldModel,
+    SNNTrainingWorldModel,
     PredictiveCodingModule,
     ResonatorNetwork as WorldResonator,
     CognitiveMapLayer,
@@ -156,7 +156,7 @@ from hdc.world_model import (
 __all__ = [
     # World Model (Physical AI)
     "WorldModelConfig",
-    "ArthedainWorldModel",
+    "SNNTrainingWorldModel",
     "PredictiveCodingModule",
     "WorldResonator",
     "CognitiveMapLayer",
@@ -1161,7 +1161,7 @@ from hdc.benchmark import (
     generate_temporal_benchmark,
     LogisticRegressionBaseline,
     HDCBaseline,
-    ArthedainBenchmarkWrapper,
+    SNNTrainingBenchmarkWrapper,
     run_benchmark,
     print_benchmark_table,
     BenchmarkResult,
@@ -1175,7 +1175,7 @@ __all__ += [
     "generate_temporal_benchmark",
     "LogisticRegressionBaseline",
     "HDCBaseline",
-    "ArthedainBenchmarkWrapper",
+    "SNNTrainingBenchmarkWrapper",
     "run_benchmark",
     "print_benchmark_table",
     "BenchmarkResult",

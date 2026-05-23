@@ -20,9 +20,9 @@ Reference:
     torchhd (Heddes et al. 2023) JMLR — FractionalPower embedding, NeuralHD.
     https://github.com/hyperdimensional-computing/torchhd
 
-Why these algebras extend Arthedain beyond its current binary/real HRR:
+Why these algebras extend SNNTraining beyond its current binary/real HRR:
 
-    Arthedain already has:
+    SNNTraining already has:
         Binary XOR (BSC):    bind=XOR, bundle=majority — simple, hardware-friendly
         Real HRR:            bind=circular convolution, unbind=exact via FFT conjugate
 
@@ -51,7 +51,7 @@ Why these algebras extend Arthedain beyond its current binary/real HRR:
         Inner product approximates a kernel K(x₁ - x₂) via Bochner's theorem.
         Bandwidth bw controls kernel width (Gaussian or Sinc shape).
         This is the cleanest continuous-to-hypervector encoder in the literature.
-        Arthedain's FPE (from vfa.py) uses a similar idea but this implements
+        SNNTraining's FPE (from vfa.py) uses a similar idea but this implements
         the torchhd version with explicit kernel control.
 
 This module implements all 4 algebras plus FractionalPower embedding,

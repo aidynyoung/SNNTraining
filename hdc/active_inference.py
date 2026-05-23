@@ -16,7 +16,7 @@ Reference:
     Millidge, Seth, Buckley (2022) "Predictive Coding: a Theoretical and
     Experimental Review" arXiv:2107.12979.
 
-Why Active Inference is the right theoretical grounding for Arthedain:
+Why Active Inference is the right theoretical grounding for SNNTraining:
 
     Standard reinforcement learning: R(s, a) → V(s) via Bellman backup
     Active inference: F(o, μ) → action that minimises expected free energy

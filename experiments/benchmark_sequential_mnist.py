@@ -1,7 +1,7 @@
 """
 experiments/benchmark_sequential_mnist.py
 ===========================================
-Sequential MNIST (sMNIST) benchmark for Arthedain.
+Sequential MNIST (sMNIST) benchmark for SNNTraining.
 
 This benchmark addresses Gap 1: "SNN Doesn't Learn Classification."
 It tests the RSNN's ability to learn a temporal classification task
@@ -125,7 +125,7 @@ def load_smnist(n_train: int = 60000, n_test: int = 10000,
 
 class sMNISTClassifier:
     """
-    Sequential MNIST classifier using Arthedain SNN.
+    Sequential MNIST classifier using SNNTraining SNN.
 
     Each pixel is presented as a scalar input (input_size=1).
     The SNN accumulates temporal context over 784 timesteps.
@@ -403,7 +403,7 @@ class sMNISTConfig:
 
 def run_smnist_benchmark(cfg: sMNISTConfig) -> Dict:
     print("\n" + "=" * 65)
-    print(" Arthedain — Sequential MNIST (sMNIST) Benchmark")
+    print(" SNNTraining — Sequential MNIST (sMNIST) Benchmark")
     print("=" * 65)
     print(f"  Hidden: {cfg.hidden_size}  |  Tau: {cfg.tau}  |  V_th: {cfg.v_th}")
     print(f"  Mode: {cfg.mode}  |  Epochs: {cfg.n_epochs}")
@@ -504,7 +504,7 @@ def run_smnist_benchmark(cfg: sMNISTConfig) -> Dict:
     print(f"  {'e-prop':<30} {'~95%':>10} {'O(1)':>8} {'e-prop traces':>15}")
     print(f"  {'Online Hebbian':<30} {'~85%':>10} {'O(1)':>8} {'dual-trace':>15}")
     print(f"  {'Reservoir + Ridge':<30} {'~82%':>10} {'O(1)':>8} {'none':>15}")
-    print(f"  {'Arthedain (this run)':<30} {f'{accuracy*100:.1f}%':>10} {'O(1)':>8} {'---':>15}")
+    print(f"  {'SNNTraining (this run)':<30} {f'{accuracy*100:.1f}%':>10} {'O(1)':>8} {'---':>15}")
 
     results = {
         "benchmark": "sMNIST",
@@ -523,7 +523,7 @@ def run_smnist_benchmark(cfg: sMNISTConfig) -> Dict:
             "eprop": 0.95,
             "online_hebbian": 0.85,
             "reservoir_ridge": 0.82,
-            "arthedain": accuracy,
+            "snntraining": accuracy,
         },
     }
 

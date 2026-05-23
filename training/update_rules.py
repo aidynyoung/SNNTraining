@@ -1,5 +1,5 @@
 """
-Modular learning rules for Arthedain.
+Modular learning rules for SNNTraining.
 Can be swapped into the trainer independently.
 """
 

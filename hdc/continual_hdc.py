@@ -25,7 +25,7 @@ prototypical hypervector for class c). The insight from the paper is
 that starting FROM this optimal point instead of FROM random eliminates
 the "warm-up" phase where the model has to first find the right direction.
 
-Applications in Arthedain:
+Applications in SNNTraining:
   - ImportanceMemory + MemoryConsolidator: when new danger/safe prototypes
     are formed, initialise from the mean of relevant observations
   - LongTermMemory replay: use class-mean to initialise new class slots

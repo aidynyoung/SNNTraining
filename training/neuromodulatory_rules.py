@@ -8,7 +8,7 @@ Based on Meta-SpikePropamine (Schmidgall & Hays, 2023):
 - Eligibility traces accumulate Hebbian correlations locally
 - Neuromodulator gates when learning occurs (dopamine-like signal)
 
-This extends Arthedain's dual-timescale Hebbian with a global third factor
+This extends SNNTraining's dual-timescale Hebbian with a global third factor
 to enable reward-based and error-based learning.
 """
 

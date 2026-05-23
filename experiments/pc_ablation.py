@@ -6,7 +6,7 @@ the predictive coding integration.
 
 Conditions
 ----------
-A. Pure Global   (α=1.0) — original Arthedain, global broadcast only
+A. Pure Global   (α=1.0) — original SNNTraining, global broadcast only
 B. Pure PC       (α=0.0) — local error only, fully self-supervised
 C. Hybrid        (α=0.5) — mixed mode (default)
 D. Adaptive α            — AdaptiveAlphaRule, auto-schedules α
@@ -76,7 +76,7 @@ def synthetic_spike_stream(
 
 
 # ---------------------------------------------------------------------------
-# Minimal Arthedain-compatible SNN stub for standalone testing
+# Minimal SNNTraining-compatible SNN stub for standalone testing
 # ---------------------------------------------------------------------------
 
 class MinimalRSNN(torch.nn.Module):
@@ -146,7 +146,7 @@ def run_condition(
     seed_base: int = 0,
 ) -> AblationResult:
     """Run one ablation condition across n_sessions."""
-    from models.predictive_coding import build_pc_stack_for_arthedain
+    from models.predictive_coding import build_pc_stack_for_snntraining
     from training.update_rules_pc import (
         PCHebbianConfig, PCHebbianRule, AdaptiveAlphaRule
     )
@@ -163,7 +163,7 @@ def run_condition(
         # Build PC stack for hybrid/PC conditions
         pc_stack = None
         if condition in ("pure_pc", "hybrid", "adaptive") and len(hidden) > 1:
-            pc_stack = build_pc_stack_for_arthedain(
+            pc_stack = build_pc_stack_for_snntraining(
                 hidden_sizes=hidden,
                 lr_gen=1e-4,
                 lr_rec=5e-5,

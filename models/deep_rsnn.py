@@ -433,7 +433,7 @@ def make_deep_rsnn_with_pc(
         rsnn: DeepRSNN model
         pc_stack: PCStack configured for this architecture
     """
-    from .predictive_coding import build_pc_stack_for_arthedain
+    from .predictive_coding import build_pc_stack_for_snntraining
     
     cfg = DeepRSNNConfig(
         input_size=input_size,
@@ -445,7 +445,7 @@ def make_deep_rsnn_with_pc(
     rsnn = DeepRSNN(cfg)
     
     # Build PC stack for layer interfaces
-    pc_stack = build_pc_stack_for_arthedain(
+    pc_stack = build_pc_stack_for_snntraining(
         hidden_sizes=hidden_sizes,
         lr_gen=pc_lr_gen,
         alpha_error=pc_alpha_error,

@@ -14,7 +14,7 @@ occupancy grid approach — with a VSA-based alternative (VSA-OGM) that:
   3. Queries occupancy probability as Hamming/cosine similarity
   4. Feeds the occupancy HV directly to an RL policy network
 
-This connects three Arthedain modules:
+This connects three SNNTraining modules:
   - SpatialHDCEncoder (hdc/vfa.py)  — position encoding
   - KernelHDCRegressor (hdc/vfa.py) — occupancy function regression
   - SelfImprovementLoop (hdc/planner.py) — online map update

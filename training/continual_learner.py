@@ -1,7 +1,7 @@
 """
 training/continual_learner.py
 ==============================
-Continual learning for Arthedain SNNs — learn new tasks without
+Continual learning for SNNTraining SNNs — learn new tasks without
 catastrophic forgetting.
 
 Critical for field deployment: a drone payload that can recognize a new

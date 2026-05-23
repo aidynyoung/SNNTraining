@@ -1,7 +1,7 @@
 """
 hdc/chip_architecture.py
 =========================
-On-chip HDC processor architecture implementing the Enotrium chip design.
+On-chip HDC processor architecture implementing the HDC on-chip processor.
 
 Four hardware modules:
 
@@ -338,8 +338,8 @@ class InformationActivationModule:
 
 # ── Full On-Chip Pipeline ─────────────────────────────────────────────────────
 
-class EnotriumChip:
-    """Full on-chip HDC processor — Enotrium chip architecture.
+class HDCChip:
+    """Full on-chip HDC processor — HDC processor architecture.
 
     Integrates the four modules into the complete pipeline:
       [Off-chip data] → Embedding → Processing → Desaturation → Decoding
@@ -458,11 +458,11 @@ class EnotriumChip:
 
 if __name__ == "__main__":
     print("\n" + "=" * 60)
-    print("  Arthedain On-Chip Processor")
+    print("  SNNTraining On-Chip Processor")
     print("=" * 60)
 
     D, n_classes, input_dim, n_train = 4096, 8, 64, 30
-    chip = EnotriumChip(input_dim=input_dim, dim=D, n_classes=n_classes, seed=42)
+    chip = HDCChip(input_dim=input_dim, dim=D, n_classes=n_classes, seed=42)
 
     print(f"\n  Prior dictionary: {input_dim} dims → {D}-bit HVs, "
           f"{chip.embedding._shifts.unique().shape[0]} unique shifts")

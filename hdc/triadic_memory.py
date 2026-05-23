@@ -11,9 +11,9 @@ Reference:
     Kanerva (1988) "Sparse Distributed Memory" — foundational SDM
     — Triadic Memory extends SDM from dyadic to ternary associations.
 
-Why Triadic Memory is distinct from everything already in Arthedain:
+Why Triadic Memory is distinct from everything already in SNNTraining:
 
-    Arthedain already has:
+    SNNTraining already has:
         SDM (dyadic):         stores (address, data) pairs
         HRR (dyadic):         stores bind(role, filler) = composite
         Tensor Products:      dense role-filler binding

@@ -25,7 +25,7 @@ Key properties demonstrated:
   - Resonator network decodes position from noisy place cell state
   - Hexagonal grid fields emerge from RNS+triangular lattice structure
 
-Connection to Arthedain:
+Connection to SNNTraining:
   - SpatialHDCEncoder (hdc/vfa.py) uses random Fourier features
     → GridCellNetwork is the STRUCTURED alternative (theoretically optimal)
   - CognitiveMapHDC connects to VSAOGM occupancy maps (hdc/occupancy.py)

@@ -7,7 +7,7 @@ RadioML 2016.10A is the standard benchmark for RF modulation classification —
 11 modulation types (AM-DSB, AM-SSB, WBFM, BPSK, QPSK, 8PSK, QAM16, QAM64,
 CPFSK, GFSK, PAM4) at SNR levels from -20 to +18 dB.
 
-This is DeepSig's free public dataset, used to validate that Arthedain's SNN
+This is DeepSig's free public dataset, used to validate that SNNTraining's SNN
 pipeline classifies real-world RF signals — not just synthetic patterns.
 
 IQT relevance
@@ -227,7 +227,7 @@ def load_radioml(
 
 class RadioMLSpikeEncoder:
     """
-    Converts IQ samples to spike trains for Arthedain SNN processing.
+    Converts IQ samples to spike trains for SNNTraining SNN processing.
 
     Encoding:
       1. Compute instantaneous amplitude and phase from I, Q channels

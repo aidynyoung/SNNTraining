@@ -1,7 +1,7 @@
 """
 test_world_model.py
 ===================
-Tests for the Arthedain World Model (hdc/world_model.py).
+Tests for the SNNTraining World Model (hdc/world_model.py).
 
 Validates:
   1. PhasorEncoder: continuous sensor values → hypervectors
@@ -9,7 +9,7 @@ Validates:
   3. PredictiveCodingModule: prediction error, Hebbian update
   4. CognitiveMapLayer: store, retrieve, attention
   5. HDCAttention: HDC-native attention mechanism
-  6. ArthedainWorldModel: full forward pass, energy tracking
+  6. SNNTrainingWorldModel: full forward pass, energy tracking
   7. MultiModalFusion: cross-modal binding and bundling
   8. SkillTransferModule: find, register, transfer skills
 """
@@ -26,7 +26,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 
 from hdc.world_model import (
     WorldModelConfig,
-    ArthedainWorldModel,
+    SNNTrainingWorldModel,
     LearnablePhasorEncoder,
     TemporalEncoder,
     PredictiveCodingModule,
@@ -331,11 +331,11 @@ class TestHDCAttention:
 
 # ── World Model Tests ─────────────────────────────────────────────────────────
 
-class TestArthedainWorldModel:
+class TestSNNTrainingWorldModel:
     """Validate the full world model."""
 
     def test_forward_returns_required_keys(self, small_config):
-        model = ArthedainWorldModel(small_config)
+        model = SNNTrainingWorldModel(small_config)
         x = torch.randn(1, small_config.n_sensors, small_config.sensor_dim)
         output = model(x, train=False)
 
@@ -347,20 +347,20 @@ class TestArthedainWorldModel:
         assert required_keys.issubset(output.keys())
 
     def test_world_state_is_binary(self, small_config):
-        model = ArthedainWorldModel(small_config)
+        model = SNNTrainingWorldModel(small_config)
         x = torch.randn(1, small_config.n_sensors, small_config.sensor_dim)
         output = model(x, train=False)
         ws = output["world_state"]
         assert ((ws == 0.0) | (ws == 1.0)).all()
 
     def test_forward_multiple_steps(self, small_config):
-        model = ArthedainWorldModel(small_config)
+        model = SNNTrainingWorldModel(small_config)
         for _ in range(10):
             x = torch.randn(1, small_config.n_sensors, small_config.sensor_dim)
             output = model(x, train=True)
 
     def test_distribution_shift_detectable(self, small_config):
-        model = ArthedainWorldModel(small_config)
+        model = SNNTrainingWorldModel(small_config)
         # Process normal data
         for _ in range(5):
             x = torch.randn(1, small_config.n_sensors, small_config.sensor_dim)
@@ -377,7 +377,7 @@ class TestArthedainWorldModel:
         assert shift2 != shift1
 
     def test_reset_clears_buffers(self, small_config):
-        model = ArthedainWorldModel(small_config)
+        model = SNNTrainingWorldModel(small_config)
         # Store some state
         for _ in range(3):
             x = torch.randn(1, small_config.n_sensors, small_config.sensor_dim)
@@ -391,7 +391,7 @@ class TestArthedainWorldModel:
 
     def test_prediction_error_tracks_changes(self, small_config):
         """Prediction error should be higher after sudden shift."""
-        model = ArthedainWorldModel(small_config)
+        model = SNNTrainingWorldModel(small_config)
 
         # Warm up with stable data
         for _ in range(5):
@@ -480,7 +480,7 @@ class TestIntegration:
 
     def test_full_pipeline_runs(self, small_config):
         """The world model processes a complete sensor stream."""
-        model = ArthedainWorldModel(small_config)
+        model = SNNTrainingWorldModel(small_config)
         n_steps = 20
 
         for t in range(n_steps):
@@ -497,7 +497,7 @@ class TestIntegration:
 
     def test_world_model_with_distribution_shift(self, small_config):
         """Model adapts to distribution shift in real-time."""
-        model = ArthedainWorldModel(small_config)
+        model = SNNTrainingWorldModel(small_config)
 
         # Phase 1: stable sensors
         shift_early = []

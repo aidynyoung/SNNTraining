@@ -263,7 +263,7 @@ class DualHebbian(nn.Module):
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# Elite Enhancements — drop-in improvements for ArthedainModel
+# Elite Enhancements — drop-in improvements for SNNTrainingModel
 # ═══════════════════════════════════════════════════════════════════════════════
 
 class AdaptiveTimescaleCoupling:
@@ -356,7 +356,7 @@ class AdaptiveTimescaleCoupling:
 
 class EliteHebbianUpdate:
     """
-    Elite replacement for ArthedainModel.update().
+    Elite replacement for SNNTrainingModel.update().
 
     Improvements: normalised error, weight decay, momentum, meta-plasticity,
     separate learning rates per weight group (input / recurrent / readout).

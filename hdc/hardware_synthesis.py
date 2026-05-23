@@ -284,7 +284,7 @@ class HDCClassifierRTL:
         sim_compare = " > ".join(f"sim_{cls}" for cls in sorted(self.protos.keys()))
 
         return textwrap.dedent(f"""
-        // Auto-generated HDC Classifier — Arthedain v1.40
+        // Auto-generated HDC Classifier — SNNTraining v1.40
         // Classes: {self.n_class}, Dimension: {self.dim}
         // Process: {self.process.name}
         // Energy estimate: {self.energy_per_inference():.2f} pJ/inference
@@ -359,7 +359,7 @@ class HDCClassifierRTL:
     def synthesis_report(self) -> Dict:
         """Generate synthesis report."""
         energy       = self.energy_per_inference()
-        transformer_energy = 55200  # nJ, from Arthedain benchmarks
+        transformer_energy = 55200  # nJ, from SNNTraining benchmarks
         ratio        = transformer_energy * 1000 / max(energy, 1e-9)
 
         return {
@@ -498,7 +498,7 @@ class HDCSynthesisReport:
         hdc_energy_pJ    = self.profiler.hdc_classifier_energy(self.dim, n_total)
         mlp_energy_pJ    = (self.profiler.mac_energy(self.dim, 256) +
                              self.profiler.mac_energy(256, self.n_classes))
-        trans_energy_nJ  = 55200  # Arthedain benchmark
+        trans_energy_nJ  = 55200  # SNNTraining benchmark
 
         # FPGA LUT estimate: ~D/6 LUTs for XOR/Hamming (Xilinx LUT6)
         lut_per_class    = int(self.dim / 6 * 2)  # XOR + adder tree
@@ -594,7 +594,7 @@ class HDCFPGAMapper:
     def generate_tcl(self, module_name: str = "hdc_classifier") -> str:
         """Generate Vivado TCL synthesis script."""
         return textwrap.dedent(f"""
-        # Arthedain HDC Classifier — Vivado synthesis script
+        # SNNTraining HDC Classifier — Vivado synthesis script
         # Module: {module_name}, D={self.dim}, target={self.part}
 
         create_project {module_name} ./{module_name} -part {self.part}
@@ -632,7 +632,7 @@ class MCUDeploymentProfiler:
 
         Espressif (2023) ESP32-S3 Technical Reference Manual §8 "Power Management"
 
-    Arthedain targets sub-nJ inference on real MCU hardware. This profiler models
+    SNNTraining targets sub-nJ inference on real MCU hardware. This profiler models
     the actual instruction-level cost on three representative MCU targets and
     computes: inference time, energy per inference, battery life, and SRAM
     feasibility for a given HDC configuration.

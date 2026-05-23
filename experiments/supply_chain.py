@@ -1,7 +1,7 @@
 """
 Supply Chain Experiment
 =======================
-Arthedain's industrial IoT differentiator.
+SNNTraining's industrial IoT differentiator.
 
 Non-stationary event stream decoding with concept drift —
 the ground-truth sensor→demand mapping shifts slowly over time.
@@ -75,7 +75,7 @@ def run_variant(drift_rate: float, label: str, T: int = 3000, seed: int = 0):
 
 
 def run():
-    print("\nARTHEDAIN — Supply Chain / Industrial IoT Experiment")
+    print("\nSNNTRAINING — Supply Chain / Industrial IoT Experiment")
     print("=" * 60)
     print("Testing online adaptation under concept drift\n")
 
@@ -116,7 +116,7 @@ def run():
         ax.text(0.97, 0.92, f"R={r:.3f}", transform=ax.transAxes,
                 ha="right", fontsize=9, color=color, fontweight="bold")
 
-    fig.suptitle("Arthedain — Online Adaptation Under Concept Drift", fontweight="bold", fontsize=13)
+    fig.suptitle("SNNTraining — Online Adaptation Under Concept Drift", fontweight="bold", fontsize=13)
     plt.tight_layout()
     os.makedirs("results/plots", exist_ok=True)
     plt.savefig("results/plots/supply_chain_drift.png", dpi=150)

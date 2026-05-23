@@ -11,7 +11,7 @@
 #   - syn_silence:  Synaptic silence (weight permanently 0)
 #
 # For each fault type, runs: classification and regression tasks.
-# Generates results files in results/arthedain_robustness_{fault_type}_{task}.json
+# Generates results files in results/snntraining_robustness_{fault_type}_{task}.json
 #
 # Usage:
 #   bash experiments/sweep_fault_types.sh           # Full sweep (~30-60 min)
@@ -44,7 +44,7 @@ FAULT_TYPES=(
 )
 
 echo "================================================================================"
-echo "Arthedain — Multi-Fault-Type Robustness Sweep"
+echo "SNNTraining — Multi-Fault-Type Robustness Sweep"
 echo "================================================================================"
 echo "Fault types: ${FAULT_TYPES[*]}"
 echo "Error rates: ${ERROR_RATES}"
@@ -58,7 +58,7 @@ for FAULT_TYPE in "${FAULT_TYPES[@]}"; do
     
     # Classification task
     echo "    [Task: classification]"
-    $PYTHON experiments/arthedain_robustness.py \
+    $PYTHON experiments/snntraining_robustness.py \
         --error-rates $ERROR_RATES \
         --fault-type "$FAULT_TYPE" \
         --persistent \
@@ -68,15 +68,15 @@ for FAULT_TYPE in "${FAULT_TYPES[@]}"; do
         $QUICK_FLAG \
         --save 2>&1 | tail -20
     
-    if [ -f "results/arthedain_robustness.json" ]; then
-        mv "results/arthedain_robustness.json" \
-           "results/arthedain_robustness_${FAULT_TYPE}_class.json"
-        echo "    -> Saved results/arthedain_robustness_${FAULT_TYPE}_class.json"
+    if [ -f "results/snntraining_robustness.json" ]; then
+        mv "results/snntraining_robustness.json" \
+           "results/snntraining_robustness_${FAULT_TYPE}_class.json"
+        echo "    -> Saved results/snntraining_robustness_${FAULT_TYPE}_class.json"
     fi
     
     # Regression task
     echo "    [Task: regression]"
-    python3 experiments/arthedain_robustness.py \
+    python3 experiments/snntraining_robustness.py \
         --error-rates $ERROR_RATES \
         --fault-type "$FAULT_TYPE" \
         --persistent \
@@ -85,10 +85,10 @@ for FAULT_TYPE in "${FAULT_TYPES[@]}"; do
         $QUICK_FLAG \
         --save 2>&1 | tail -20
     
-    if [ -f "results/arthedain_robustness.json" ]; then
-        mv "results/arthedain_robustness.json" \
-           "results/arthedain_robustness_${FAULT_TYPE}_reg.json"
-        echo "    -> Saved results/arthedain_robustness_${FAULT_TYPE}_reg.json"
+    if [ -f "results/snntraining_robustness.json" ]; then
+        mv "results/snntraining_robustness.json" \
+           "results/snntraining_robustness_${FAULT_TYPE}_reg.json"
+        echo "    -> Saved results/snntraining_robustness_${FAULT_TYPE}_reg.json"
     fi
 done
 
@@ -98,4 +98,4 @@ echo "Sweep complete!"
 echo "================================================================================"
 echo ""
 echo "Results files:"
-ls -la results/arthedain_robustness_*.json 2>/dev/null || echo "  No results found"
+ls -la results/snntraining_robustness_*.json 2>/dev/null || echo "  No results found"

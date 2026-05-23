@@ -16,7 +16,7 @@ Reference:
     Gayler & Levy (2011) "VSA Architectures" arXiv:cs/0412059
     — FSA as VSA structure.
 
-Why VSA-encoded FSAs matter for Arthedain:
+Why VSA-encoded FSAs matter for SNNTraining:
 
     Standard FSAs: state tables with O(|S| × |A|) memory
     VSA-encoded FSA: one bundle HV per automaton + clean transition computation
@@ -29,7 +29,7 @@ Why VSA-encoded FSAs matter for Arthedain:
         candidate = unbind(T, bind(current_state, token))
         next_state = cleanup(candidate)
 
-    Applications in Arthedain:
+    Applications in SNNTraining:
         - Encode protocol state machines (TCP, CoAP, sensor protocols)
         - Regular language recognition without explicit tables
         - Sequence pattern matching in sensor streams

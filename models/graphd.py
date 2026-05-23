@@ -1,4 +1,4 @@
-"""GrapHD: Hyperdimensional Graph Memory for Arthedain.
+"""GrapHD: Hyperdimensional Graph Memory for SNNTraining.
 Based on Section IV of Amrouch et al. 2022.
 Encodes SNN recurrent connectivity into a single hypervector
 for robust reasoning about neural circuit structure."""

@@ -3,7 +3,7 @@ force2_lif_trainer.py
 =====================
 LIF-based FORCE2 trainer - spiking neuron implementation.
 
-Integrates Arthedain's LIF neurons with FORCE training:
+Integrates SNNTraining's LIF neurons with FORCE training:
 - Spiking dynamics (LIF with refractory period)
 - Filtered spike trains for readout (exponential filtering)
 - RLS applied to filtered spikes
@@ -113,7 +113,7 @@ class FilteredSpikeBuffer:
 
 class FORCE2LIFTrainer(nn.Module):
     """
-    LIF-based FORCE2 trainer using Arthedain's spiking neurons.
+    LIF-based FORCE2 trainer using SNNTraining's spiking neurons.
     
     This implements the full spiking network from Nicola & Clopath 2017:
     - LIF neurons with refractory periods

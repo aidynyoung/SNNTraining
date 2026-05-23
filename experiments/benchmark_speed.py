@@ -145,7 +145,7 @@ def main():
     methods = ["hebbian", "hybrid", "eprop", "force"] if args.method == "all" else [args.method]
     
     print("=" * 60)
-    print(f"Arthedain Training Speed Benchmark")
+    print(f"SNNTraining Training Speed Benchmark")
     print(f"Steps: {args.steps}")
     print("=" * 60)
     print()

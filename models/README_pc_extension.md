@@ -1,4 +1,4 @@
-# Arthedain — Predictive Coding Extension
+# SNNTraining — Predictive Coding Extension
 
 ## What this adds
 
@@ -12,9 +12,9 @@ the existing dual-timescale Hebbian accumulator framework, based on:
 ### New files
 
 ```
-arthedain/
+snntraining/
 ├── models/
-│   ├── predictive_coding.py   ← PCLayer, PCStack, build_pc_stack_for_arthedain
+│   ├── predictive_coding.py   ← PCLayer, PCStack, build_pc_stack_for_snntraining
 │   └── hybrid_learner.py      ← HybridLearner (PC + Hebbian unified wrapper)
 ├── training/
 │   └── update_rules_pc.py     ← PCHebbianRule, ESPPRule, AdaptiveAlphaRule
@@ -26,7 +26,7 @@ arthedain/
 
 ## The core idea
 
-The original Arthedain rule broadcasts a **global error** backward through
+The original SNNTraining rule broadcasts a **global error** backward through
 all layers via `W^T`:
 
 ```
@@ -64,9 +64,9 @@ e_hybrid = α · e_global + (1-α) · ε_local
 ### 1. Attach PC stack to an existing RSNN
 
 ```python
-from models.predictive_coding import build_pc_stack_for_arthedain
+from models.predictive_coding import build_pc_stack_for_snntraining
 
-pc = build_pc_stack_for_arthedain(
+pc = build_pc_stack_for_snntraining(
     hidden_sizes=[1024, 512],   # matches MC Maze architecture
     lr_gen=1e-4,
     lr_rec=5e-5,

@@ -52,7 +52,7 @@ def run_variant(name: str, alpha: float, beta: float, T=1000, seed=42):
 
 
 def run():
-    print("\nABLATION STUDY — Arthedain Dual-Timescale Hebbian\n" + "=" * 55)
+    print("\nABLATION STUDY — SNNTraining Dual-Timescale Hebbian\n" + "=" * 55)
 
     variants = [
         ("Dual-timescale (α=0.7, β=0.3)",  0.7, 0.3),

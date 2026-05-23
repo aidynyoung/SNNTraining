@@ -323,7 +323,7 @@ class ROS2NodeWrapper(RealTimeLoop):
         config: Optional[RealTimeConfig] = None,
         input_topic: str = '/snn_input',
         output_topic: str = '/snn_output',
-        node_name: str = 'arthedain_snn'
+        node_name: str = 'snntraining_snn'
     ):
         super().__init__(trainer, config)
         self.input_topic = input_topic

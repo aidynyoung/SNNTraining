@@ -38,8 +38,8 @@ jobs:
       - name: Run tests
         run: |
           pytest tests/ -v --tb=short \
-            --cov=models --cov=training --cov=arthedain \
+            --cov=models --cov=training --cov=snntraining \
             --cov-report=term-missing
 
       - name: Smoke-test CLI
-        run: python -m arthedain demo --steps 50
+        run: python -m snntraining demo --steps 50

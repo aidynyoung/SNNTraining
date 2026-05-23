@@ -1,5 +1,5 @@
 """
-Core utilities for Arthedain SNN framework.
+Core utilities for SNNTraining SNN framework.
 """
 
 from .logging import setup_logger, log_model_info, log_training_step, log_gpu_memory

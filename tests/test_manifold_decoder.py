@@ -214,13 +214,13 @@ class TestPopulationActivityEncoder:
         assert float(self.enc._prev.sum()) == 0.0
 
 
-# ─── Integration: EliteArthedainModel with 0.95-tier ─────────────────────────
+# ─── Integration: EliteSNNTrainingModel with 0.95-tier ─────────────────────────
 
 class TestEliteModelWith95Tier:
     def test_alif_manifold_wired(self):
-        from arthedain.model import EliteArthedainModel, ArthedainConfig
-        cfg = ArthedainConfig(input_size=10, hidden_size=N, output_size=K)
-        m   = EliteArthedainModel(config=cfg, wiener_lags=3, manifold_k=k,
+        from snntraining.model import EliteSNNTrainingModel, SNNTrainingConfig
+        cfg = SNNTrainingConfig(input_size=10, hidden_size=N, output_size=K)
+        m   = EliteSNNTrainingModel(config=cfg, wiener_lags=3, manifold_k=k,
                                    use_alif=True, use_manifold=True, use_pop_enc=True)
         for i in range(20):
             x = torch.rand(10)
@@ -234,8 +234,8 @@ class TestEliteModelWith95Tier:
         assert "Manifold" in repr(m)
 
     def test_tier95_in_repr(self):
-        from arthedain.model import EliteArthedainModel, ArthedainConfig
-        cfg = ArthedainConfig(input_size=8, hidden_size=16, output_size=2)
-        m   = EliteArthedainModel(config=cfg, manifold_k=4, wiener_lags=2)
+        from snntraining.model import EliteSNNTrainingModel, SNNTrainingConfig
+        cfg = SNNTrainingConfig(input_size=8, hidden_size=16, output_size=2)
+        m   = EliteSNNTrainingModel(config=cfg, manifold_k=4, wiener_lags=2)
         r   = repr(m)
         assert "ALIF" in r or "Manifold" in r

@@ -1,7 +1,7 @@
 """
 models/reservoir_metrics.py
 ============================
-Quantify the computational quality of the Arthedain reservoir.
+Quantify the computational quality of the SNNTraining reservoir.
 
 Three core metrics from Liquid State Machine (LSM) theory that IQT
 evaluators will ask about:

@@ -16,7 +16,7 @@ Reference:
 
 Why generative HDC matters:
 
-    Arthedain currently has:
+    SNNTraining currently has:
         Discriminative HDC: classify inputs
         Self-supervised HDC: learn representations without labels
         Contrastive HDC: distinguish positive/negative pairs

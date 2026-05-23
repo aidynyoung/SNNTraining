@@ -1,7 +1,7 @@
 """
 tests/test_integration.py
 ==========================
-End-to-end integration tests for Arthedain pipelines.
+End-to-end integration tests for SNNTraining pipelines.
 
 Tests full pipelines without mocking internal components, covering:
   - SNN → HDC head (full inference loop)

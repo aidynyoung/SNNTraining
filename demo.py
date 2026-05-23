@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
-Arthedain Interactive Demo
+SNNTraining Interactive Demo
 ==========================
-Run this to see Arthedain in action:
+Run this to see SNNTraining in action:
     python demo.py
 
 This demo shows:
-1. Arthedain learning a 4-class temporal classification task in real-time
+1. SNNTraining learning a 4-class temporal classification task in real-time
 2. Energy comparison with transformer (22,992× less)
 3. Fault tolerance (100% accuracy under 10% hardware faults)
 4. Online learning (no backpropagation, no replay buffer)
@@ -37,7 +37,7 @@ def print_result(label: str, value: str, emoji: str = "✅"):
     print(f"  {emoji}  {label}: {value}")
 
 def demo_online_learning():
-    """Demonstrate Arthedain learning a 4-class task online."""
+    """Demonstrate SNNTraining learning a 4-class task online."""
     print_header("1. Online Learning — No Backpropagation")
     
     n_features = 10
@@ -158,7 +158,7 @@ def demo_energy_comparison():
   Energy Model: 45nm CMOS (Horowitz ISSCC 2014)
   
   ┌──────────────────────┬──────────────────────┬──────────────────────┐
-  │                      │     Arthedain        │     Transformer      │
+  │                      │     SNNTraining        │     Transformer      │
   ├──────────────────────┼──────────────────────┼──────────────────────┤
   │ Core operation       │ XOR (0.1 pJ)         │ MAC (4.6 pJ)         │
   │ Operations/inference │ 34,004               │ 180,224              │
@@ -179,15 +179,15 @@ def demo_energy_comparison():
   No amount of quantization, pruning, or distillation can close this gap.
   """)
 
-def demo_why_arthedain():
+def demo_why_snntraining():
     """Show the key differentiators."""
-    print_header("4. Why Arthedain Wins")
+    print_header("4. Why SNNTraining Wins")
     
     print(f"""
   ┌─────────────────────────────────────────────────────────────────────┐
-  │                    Arthedain vs The World                           │
+  │                    SNNTraining vs The World                           │
   ├──────────────────────┬──────────────┬──────────────┬────────────────┤
-  │ Capability           │ Arthedain    │ Transformer  │ SNN (Loihi)    │
+  │ Capability           │ SNNTraining    │ Transformer  │ SNN (Loihi)    │
   ├──────────────────────┼──────────────┼──────────────┼────────────────┤
   │ Energy/inference     │ 2.4 nJ       │ 55,200 nJ    │ 12.9 nJ        │
   │ Accuracy             │ 84%          │ 84%          │ 78%            │
@@ -199,7 +199,7 @@ def demo_why_arthedain():
   │ Catastrophic forget  │ ❌ (immune)  │ ✅ (suffers) │ ✅ (suffers)   │
   └──────────────────────┴──────────────┴──────────────┴────────────────┘
   
-  Arthedain is the ONLY solution that combines:
+  SNNTraining is the ONLY solution that combines:
   • Transformer-level accuracy (84%)
   • 22,992× less energy (2.4 nJ)
   • Online learning (no backpropagation)
@@ -214,7 +214,7 @@ def demo_roadmap():
     
     print(f"""
   ┌─────────────────────────────────────────────────────────────────────┐
-  │                    Arthedain — $500M Roadmap                        │
+  │                    SNNTraining — $500M Roadmap                        │
   ├──────────────────────┬──────────────────┬───────────────────────────┤
   │ Phase                │ Timeline         │ Milestone                 │
   ├──────────────────────┼──────────────────┼───────────────────────────┤
@@ -240,7 +240,7 @@ def demo_roadmap():
   """)
 
 def main():
-    """Run the full Arthedain demo."""
+    """Run the full SNNTraining demo."""
     print()
     print("╔══════════════════════════════════════════════════════════════╗")
     print("║                                                              ║")
@@ -251,17 +251,17 @@ def main():
     print("║                                                              ║")
     print("╚══════════════════════════════════════════════════════════════╝")
     print()
-    print("  This demo shows Arthedain's core innovations:")
+    print("  This demo shows SNNTraining's core innovations:")
     print("  1. Online learning without backpropagation")
     print("  2. Fault tolerance (100% accuracy under 10% faults)")
     print("  3. Energy comparison (22,992× less than transformer)")
-    print("  4. Why Arthedain wins")
+    print("  4. Why SNNTraining wins")
     print("  5. The path to $500M")
     
     model, accuracy = demo_online_learning()
     demo_fault_tolerance()
     demo_energy_comparison()
-    demo_why_arthedain()
+    demo_why_snntraining()
     demo_roadmap()
     
     print_header("Summary")
@@ -272,11 +272,11 @@ def main():
   ✅  Memory: O(1) — no replay buffer, no BPTT unrolling
   ✅  Deployment: MCU, FPGA, Loihi 2 — mW power budget
   
-  Arthedain is the future of edge AI.
+  SNNTraining is the future of edge AI.
   Transformers are the past.
   
   Run `python experiments/benchmark_neuromorphic.py` for SHD benchmark.
-  Run `python experiments/arthedain_robustness.py` for fault tolerance.
+  Run `python experiments/snntraining_robustness.py` for fault tolerance.
   Run `python experiments/benchmark_energy.py` for energy comparison.
   """)
 

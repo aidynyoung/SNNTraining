@@ -3,7 +3,7 @@ experiments/seed_benchmark.py
 ==============================
 Multi-seed benchmark runner with confidence intervals.
 
-Runs any Arthedain experiment N times across different random seeds and
+Runs any SNNTraining experiment N times across different random seeds and
 reports mean ± std — the standard required by IQT evaluators and peer-
 reviewed venues.  Single-seed results are not reproducibility evidence.
 
@@ -105,7 +105,7 @@ def run_robustness_seed(seed: int, quick: bool = False) -> Dict[str, float]:
     """Run one seed of the SNN+HDC robustness experiment."""
     set_seed(seed)
 
-    from experiments.arthedain_robustness import ExperimentConfig, run_single_config
+    from experiments.snntraining_robustness import ExperimentConfig, run_single_config
 
     cfg = ExperimentConfig(
         input_size=20,
@@ -184,7 +184,7 @@ def run_shd_seed(seed: int, quick: bool = False) -> Dict[str, float]:
     # Parse accuracy from stdout
     acc = None
     for line in out.stdout.splitlines():
-        if "Arthedain (this run)" in line:
+        if "SNNTraining (this run)" in line:
             try:
                 acc = float(line.split()[-1].replace("%", "")) / 100.0
             except Exception:

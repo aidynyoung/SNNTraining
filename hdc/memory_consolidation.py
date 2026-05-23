@@ -11,7 +11,7 @@ Biological memory systems solve this with two mechanisms:
   2. **Spaced repetition** — replay important memories at exponentially
      increasing intervals so they get consolidated without dominating runtime.
 
-Arthedain's implementation (all HDC, no backpropagation):
+SNNTraining's implementation (all HDC, no backpropagation):
 
   **ImportanceMemory** — wraps SensorStreamBuffer with:
     - Importance score: f(surprise, resolution, recency)

@@ -232,7 +232,7 @@ def exponential_moving_average(
     values: List[float],
     alpha:  float = 0.1,
 ) -> List[float]:
-    """EMA over a list — matches the online EMA used inside Arthedain models."""
+    """EMA over a list — matches the online EMA used inside SNNTraining models."""
     if not values:
         return []
     ema = [values[0]]

@@ -1,10 +1,10 @@
 """
-Super-Turing Capabilities in Arthedain
+Super-Turing Capabilities in SNNTraining
 ========================================
 Demonstrates and analyzes the conditions under which HDC moves beyond
 Turing-completeness toward super-Turing computation.
 
-This module implements the four arguments from the Arthedain Turing
+This module implements the four arguments from the SNNTraining Turing
 Completeness framing document:
 
   §3.1 — Continuous similarity surface: FHRR inner product as analog attractor
@@ -476,7 +476,7 @@ class AnalogFHRR:
 
 def computational_power_analysis() -> Dict:
     """
-    Summarise the computational power of each Arthedain layer.
+    Summarise the computational power of each SNNTraining layer.
 
     Based on the theoretical framing document.
     """
@@ -511,7 +511,7 @@ def computational_power_analysis() -> Dict:
             "condition": "Truly infinite number of HVs (physically impossible, but limit computation)",
             "status": "DensityProblemHDC demonstrates convergence",
         },
-        "full_arthedain_stack": {
+        "full_snntraining_stack": {
             "power": "Turing-complete, potentially super-Turing",
             "layers": "Sensor → EventHDC (continuous) → HDC world model → SNN → feedback",
             "super_turing_path": "Analog hardware + event cameras + continuous feedback",

@@ -1,13 +1,13 @@
 """
 tests/test_elite_model.py
 ==========================
-Tests for EliteArthedainModel, ForceRecurrentLearner, SpectralReadout,
+Tests for EliteSNNTrainingModel, ForceRecurrentLearner, SpectralReadout,
 EnsembleReadout, BCMHebbian, ThreeFactorRule, EWCRegularizer,
 SuperSpikeSTDP, IntrinsicPlasticity, KalmanReadout, RLSReadout, WienerReadout.
 """
 import pytest
 import torch
-from arthedain.model import EliteArthedainModel, ArthedainConfig
+from snntraining.model import EliteSNNTrainingModel, SNNTrainingConfig
 from models.hebbian import (
     BCMHebbian, ThreeFactorRule, EWCRegularizer,
     SuperSpikeSTDP, IntrinsicPlasticity, ForceRecurrentLearner,
@@ -333,12 +333,12 @@ class TestEnsembleReadout:
         assert "alpha_mean" in info   # renamed from "alpha" (now per-dim)
 
 
-# ── EliteArthedainModel ───────────────────────────────────────────────────────
+# ── EliteSNNTrainingModel ───────────────────────────────────────────────────────
 
-class TestEliteArthedainModel:
+class TestEliteSNNTrainingModel:
     def _make_model(self, **kwargs):
-        cfg = ArthedainConfig(input_size=10, hidden_size=N, output_size=K)
-        return EliteArthedainModel(config=cfg, wiener_lags=3, **kwargs)
+        cfg = SNNTrainingConfig(input_size=10, hidden_size=N, output_size=K)
+        return EliteSNNTrainingModel(config=cfg, wiener_lags=3, **kwargs)
 
     def test_step_shape(self):
         m = self._make_model()
@@ -499,8 +499,8 @@ class TestWienerReadoutWarmupScale:
 class TestIntrinsicPlasticityInjection:
     def test_ip_bias_affects_rsnn_voltage(self):
         """IP bias should actually change lif.v when applied."""
-        cfg = ArthedainConfig(input_size=10, hidden_size=N, output_size=K)
-        m = EliteArthedainModel(config=cfg, use_intrinsic=True)
+        cfg = SNNTrainingConfig(input_size=10, hidden_size=N, output_size=K)
+        m = EliteSNNTrainingModel(config=cfg, use_intrinsic=True)
         # Force a large positive bias
         m.intrinsic.bias.fill_(0.5)
         v_before = m.rsnn.lif.v.clone()
@@ -512,8 +512,8 @@ class TestIntrinsicPlasticityInjection:
 
     def test_ip_updates_after_spikes(self):
         """IP should update bias based on observed firing rate."""
-        cfg = ArthedainConfig(input_size=10, hidden_size=N, output_size=K)
-        m = EliteArthedainModel(config=cfg, use_intrinsic=True)
+        cfg = SNNTrainingConfig(input_size=10, hidden_size=N, output_size=K)
+        m = EliteSNNTrainingModel(config=cfg, use_intrinsic=True)
         bias_init = m.intrinsic.bias.clone()
         for _ in range(30):
             m.step(torch.rand(10) * 2.0)  # strong input
@@ -521,8 +521,8 @@ class TestIntrinsicPlasticityInjection:
         assert not torch.equal(m.intrinsic.bias, bias_init)
 
     def test_ip_reset_restores_zero_bias(self):
-        cfg = ArthedainConfig(input_size=10, hidden_size=N, output_size=K)
-        m = EliteArthedainModel(config=cfg, use_intrinsic=True)
+        cfg = SNNTrainingConfig(input_size=10, hidden_size=N, output_size=K)
+        m = EliteSNNTrainingModel(config=cfg, use_intrinsic=True)
         for _ in range(10):
             m.step(torch.rand(10))
         m.reset()
@@ -882,14 +882,14 @@ class TestRSNNPerNeuronGain:
         assert (rsnn.per_neuron_gain >= 0.5).all()
 
     def test_elite_model_has_per_neuron_gain(self):
-        cfg = ArthedainConfig(input_size=10, hidden_size=N, output_size=K)
-        m = EliteArthedainModel(config=cfg)
+        cfg = SNNTrainingConfig(input_size=10, hidden_size=N, output_size=K)
+        m = EliteSNNTrainingModel(config=cfg)
         assert m.rsnn.per_neuron_gain is not None
         assert m.rsnn.per_neuron_gain.shape == (N,)
 
     def test_interaction_readout_mode(self):
-        cfg = ArthedainConfig(input_size=10, hidden_size=N, output_size=K)
-        m = EliteArthedainModel(
+        cfg = SNNTrainingConfig(input_size=10, hidden_size=N, output_size=K)
+        m = EliteSNNTrainingModel(
             config=cfg,
             use_ensemble_readout=False,
             use_wiener=False,
@@ -1045,8 +1045,8 @@ class TestWienerReadoutWarmStart:
         assert wr.W.abs().sum() == 0.0  # unchanged
 
     def test_warm_start_wired_in_elite_model(self):
-        cfg = ArthedainConfig(input_size=10, hidden_size=N, output_size=K)
-        m = EliteArthedainModel(config=cfg, wiener_lags=3)
+        cfg = SNNTrainingConfig(input_size=10, hidden_size=N, output_size=K)
+        m = EliteSNNTrainingModel(config=cfg, wiener_lags=3)
         assert hasattr(m, '_ws_features')
         assert hasattr(m, '_ws_done')
         # warm-start is now disabled by default (_ws_done=True) because the
@@ -1054,8 +1054,8 @@ class TestWienerReadoutWarmStart:
         assert m._ws_done is True
 
     def test_warm_start_state_tracking(self):
-        cfg = ArthedainConfig(input_size=10, hidden_size=N, output_size=K)
-        m = EliteArthedainModel(config=cfg, wiener_lags=3)
+        cfg = SNNTrainingConfig(input_size=10, hidden_size=N, output_size=K)
+        m = EliteSNNTrainingModel(config=cfg, wiener_lags=3)
         # Even though warm-start is disabled, state tracking buffers exist
         assert hasattr(m, '_ws_features')
         assert hasattr(m, '_ws_targets')

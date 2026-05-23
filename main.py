@@ -1,5 +1,5 @@
 """
-Arthedain: Online FORCE/RLS-style Training for BCI Velocity Decoding
+SNNTraining: Online FORCE/RLS-style Training for BCI Velocity Decoding
 
 This script implements online learning for recurrent spiking neural networks (RSNN)
 using a dual-timescale Hebbian plasticity rule combined with recursive least squares

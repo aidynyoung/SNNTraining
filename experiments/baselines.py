@@ -1,5 +1,5 @@
 """
-Kalman Filter and BPTT SNN baselines for fair comparison with Arthedain.
+Kalman Filter and BPTT SNN baselines for fair comparison with SNNTraining.
 Both consume identical data streams.
 """
 import torch

@@ -1,10 +1,10 @@
 """
 experiments/compare_learning_methods.py
 =========================================
-Benchmark comparing all Arthedain learning methods on BCI decoding.
+Benchmark comparing all SNNTraining learning methods on BCI decoding.
 
 Methods compared:
-1. Dual-timescale Hebbian (original Arthedain)
+1. Dual-timescale Hebbian (original SNNTraining)
 2. e-prop with eligibility traces
 3. FORCE / RLS online learning
 4. Dynamics-based fast learning
@@ -313,7 +313,7 @@ def print_comparison_table(results: List[BenchmarkResult]):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Compare Arthedain learning methods")
+    parser = argparse.ArgumentParser(description="Compare SNNTraining learning methods")
     parser.add_argument("--method", default="all",
                        choices=["all", "hebbian", "eprop", "force", "dynamics", "pc", "hybrid"],
                        help="Which method to benchmark")

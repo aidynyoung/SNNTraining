@@ -40,5 +40,5 @@ addopts = "-v --tb=short"
 pythonpath = [".", ".."]
 
 [tool.coverage.run]
-source = ["arthedain", "models", "training"]
+source = ["models", "training"]
 omit = ["*/tests/*", "*/__main__.py"]

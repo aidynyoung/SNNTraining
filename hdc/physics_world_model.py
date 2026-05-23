@@ -1,7 +1,7 @@
 """
 Physics-Informed World Model for Physical AI
 =============================================
-Extends ArthedainWorldModel with three capabilities described in the
+Extends SNNTrainingWorldModel with three capabilities described in the
 Physical AI framing (Bekele, Golota, Schaeffer 2026; IQT):
 
 1. **Multi-Horizon Prediction** — Separate short/medium/long-term predictors

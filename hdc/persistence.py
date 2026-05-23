@@ -227,15 +227,15 @@ def load_agent_state(agent, path: str) -> Dict[str, Any]:
     return state
 
 
-# ── Generic save / load for any Arthedain model ──────────────────────────────
+# ── Generic save / load for any SNNTraining model ──────────────────────────────
 
 def save_model(obj: Any, path: str, metadata: Optional[Dict[str, Any]] = None):
     """
     Generic checkpoint: save any Python/PyTorch object to disk.
 
     Works with:
-      - WorldModelStream (arthedain.stream)
-      - EliteArthedainModel, EliteArthedainPipeline
+      - WorldModelStream (snntraining.stream)
+      - EliteSNNTrainingModel, EliteSNNTrainingPipeline
       - Any nn.Module with state_dict()
       - Any Python object (pickle fallback)
 
@@ -245,7 +245,7 @@ def save_model(obj: Any, path: str, metadata: Optional[Dict[str, Any]] = None):
         metadata: Optional dict of extra metadata (version, timestamp, etc.)
     """
     payload: Dict[str, Any] = {
-        "_arthedain_checkpoint": True,
+        "_snntraining_checkpoint": True,
         "_timestamp": time.time(),
         "_metadata": metadata or {},
         "_classname": type(obj).__name__,
@@ -282,7 +282,7 @@ def load_model(obj: Any, path: str) -> Dict[str, Any]:
     """
     payload = torch.load(path, map_location="cpu")
 
-    if not payload.get("_arthedain_checkpoint"):
+    if not payload.get("_snntraining_checkpoint"):
         # Try as state_dict directly
         if obj is not None and hasattr(obj, "load_state_dict"):
             obj.load_state_dict(payload)

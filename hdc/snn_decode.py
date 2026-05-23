@@ -41,7 +41,7 @@ Advantages over one-hot SNN:
     • Energy: fewer comparison operations (Hamming vs argmax)
     • Expressiveness: exponential vs linear class capacity
 
-Integration with Arthedain's SNN modules:
+Integration with SNNTraining's SNN modules:
     SpikingHVNetwork (models/hv_snn.py) already produces state HVs.
     SNNHDCDecoder REPLACES the one-hot readout in SpikingHVNetwork with
     an HDC-based decoder that uses prototype matching instead of argmax.
@@ -417,7 +417,7 @@ class SNNHDCPipeline(nn.Module):
     """
     Full SNN+HDC pipeline: SpikingHVNetwork backbone + SNNHDCDecoder head.
 
-    Connects Arthedain's SpikingHVNetwork (models/hv_snn.py) to an HDC
+    Connects SNNTraining's SpikingHVNetwork (models/hv_snn.py) to an HDC
     decoder, replacing the one-hot output layer.
 
     The SpikingHVNetwork processes a spike input and produces:

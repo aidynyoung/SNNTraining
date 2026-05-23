@@ -1,5 +1,5 @@
 """
-HDC-Glue: Hyperdimensional Computing Pipeline for Arthedain
+HDC-Glue: Hyperdimensional Computing Pipeline for SNNTraining
 =============================================================
 Based on the research program of Sutor, Mitrokhin, Aloimonos, Fermüller, and colleagues,
 with architecture matching Servamind's holographic encoding + hyperdimensional computing.

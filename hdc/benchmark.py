@@ -1,5 +1,5 @@
 """
-Arthedain Benchmark Suite
+SNNTraining Benchmark Suite
 ==========================
 Compares SelfImprovementLoop against standard ML baselines on real tasks.
 Also provides the UCR time-series and CSV data adapters.
@@ -228,10 +228,10 @@ class HDCBaseline:
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# Arthedain Agent Wrapper for Benchmarking
+# SNNTraining Agent Wrapper for Benchmarking
 # ═══════════════════════════════════════════════════════════════════════════════
 
-class ArthedainBenchmarkWrapper:
+class SNNTrainingBenchmarkWrapper:
     """Wraps SelfImprovementLoop for classification benchmarking."""
 
     def __init__(self, n_features: int, n_classes: int, dim: int = 1000, seed: int = 42):
@@ -321,7 +321,7 @@ def run_benchmark(
     Methods:
       - Logistic Regression (sklearn-free, pure PyTorch)
       - HDC Baseline (one-shot, no retraining)
-      - Arthedain (self-improving agent)
+      - SNNTraining (self-improving agent)
     """
     n_f = X_train.shape[1]
     n_c = int(y_train.max().item()) + 1
@@ -355,9 +355,9 @@ def run_benchmark(
     results.append(BenchmarkResult("HDC_Baseline", acc_hdc, t_train, t_inf,
                                     n_tr, n_te, n_f, n_c))
 
-    # 3. Arthedain
+    # 3. SNNTraining
     t0 = time.perf_counter()
-    art = ArthedainBenchmarkWrapper(n_f, n_c, dim=dim_hdc, seed=seed)
+    art = SNNTrainingBenchmarkWrapper(n_f, n_c, dim=dim_hdc, seed=seed)
     art.fit(X_train, y_train, n_passes=1)
     t_train = (time.perf_counter() - t0) * 1000
 
@@ -365,7 +365,7 @@ def run_benchmark(
     acc_art = art.accuracy(X_test, y_test)
     t_inf = (time.perf_counter() - t0) * 1000 / n_te
 
-    results.append(BenchmarkResult("Arthedain_SelfImproving", acc_art, t_train, t_inf,
+    results.append(BenchmarkResult("SNNTraining_SelfImproving", acc_art, t_train, t_inf,
                                     n_tr, n_te, n_f, n_c))
 
     return results
@@ -384,7 +384,7 @@ def print_benchmark_table(results: List[BenchmarkResult]):
 
 def test_benchmark():
     print("=" * 60)
-    print("Running Arthedain Benchmark vs Baselines")
+    print("Running SNNTraining Benchmark vs Baselines")
     print("=" * 60)
 
     torch.manual_seed(42)

@@ -1,7 +1,7 @@
 """
 HDC Energy Efficiency: Packed Binary HVs, Adaptive Dimensionality, Early-Exit
 ==============================================================================
-Addresses the core energy overhead of current Arthedain HDC operations:
+Addresses the core energy overhead of current SNNTraining HDC operations:
 
   Current:  float32 tensors → 32 bits/dimension → 40KB per HV at D=10000
   Packed:   uint8 bit packing → 1 bit/dimension → 1.25KB per HV at D=10000
@@ -16,7 +16,7 @@ Addresses the core energy overhead of current Arthedain HDC operations:
             → 2-10× speedup on large memories with skewed distributions
 
 All three improvements are derived from the theoretical foundations
-already in Arthedain:
+already in SNNTraining:
   - PackedBinaryHV: uses same XOR+popcount ops, just on uint8 instead of float32
   - AdaptiveDim: uses concentration.py's required_dim() and theoretical_std()
   - EarlyExit: exploits the sorted similarity distribution property of BSC HVs

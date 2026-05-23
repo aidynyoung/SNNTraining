@@ -1,5 +1,5 @@
 """
-Logging utilities for Arthedain SNN training.
+Logging utilities for SNNTraining SNN training.
 """
 import logging
 import sys
@@ -9,7 +9,7 @@ import torch
 
 
 def setup_logger(
-    name: str = "arthedain",
+    name: str = "snntraining",
     level: str = "INFO",
     log_file: Optional[str] = None,
     format_string: Optional[str] = None
@@ -97,7 +97,7 @@ def log_training_step(
         logger: Logger instance (creates default if None)
     """
     if logger is None:
-        logger = logging.getLogger("arthedain")
+        logger = logging.getLogger("snntraining")
     
     msg = f"Step {step}: Loss = {loss:.6f}"
     if lr is not None:
@@ -113,7 +113,7 @@ def log_gpu_memory(logger: Optional[logging.Logger] = None) -> None:
         logger: Logger instance (creates default if None)
     """
     if logger is None:
-        logger = logging.getLogger("arthedain")
+        logger = logging.getLogger("snntraining")
     
     if torch.cuda.is_available():
         allocated = torch.cuda.memory_allocated() / 1024**3  # GB

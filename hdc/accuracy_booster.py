@@ -2,7 +2,7 @@
 HDC Model Accuracy Improvement Techniques
 ==========================================
 Implements three complementary accuracy-improvement strategies for HDC
-classifiers, derived from the Arthedain research base:
+classifiers, derived from the SNNTraining research base:
 
 1. **ConfusionAwareRetrainer** — finds class pairs that are most confused
    (their prototype HVs are too similar) and applies targeted differential

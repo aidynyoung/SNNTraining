@@ -2,7 +2,7 @@
 Energy Benchmark
 ================
 Estimates synaptic operations (SynOps) as proxy for energy consumption.
-Compares Arthedain SNN vs dense ANN equivalent.
+Compares SNNTraining SNN vs dense ANN equivalent.
 
 Methodology
 -----------
@@ -11,7 +11,7 @@ SynOps (Synaptic Operations) serve as a proxy for energy consumption because:
 2. Each multiply-accumulate (MAC) requires weight fetch + computation
 3. Sparse event-driven computation skips inactive synapses entirely
 
-SNN Baseline (Arthedain):
+SNN Baseline (SNNTraining):
 - Sparse spike activity (~5% neurons active per timestep)
 - Only active neurons trigger synaptic lookups
 - SynOps = active_neurons × fan_in per timestep
@@ -98,11 +98,11 @@ def run(T: int = 1000):
     ratio = ann_stats["synops_per_step"] / max(snn_stats["synops_per_step"], 1)
 
     print("=" * 50)
-    print("ARTHEDAIN ENERGY BENCHMARK")
+    print("SNNTRAINING ENERGY BENCHMARK")
     print("=" * 50)
     print(f"  Hidden size:        {HIDDEN_SIZE}")
     print(f"  Timesteps:          {T}")
-    print(f"\nSNN (Arthedain):")
+    print(f"\nSNN (SNNTraining):")
     print(f"  Mean active neurons: {snn_stats['mean_active_neurons']:.2f} / {HIDDEN_SIZE}")
     print(f"  Sparsity:            {snn_stats['sparsity']*100:.1f}%")
     print(f"  SynOps/step:         {snn_stats['synops_per_step']:.0f}")
@@ -113,7 +113,7 @@ def run(T: int = 1000):
     # Bar chart
     fig, ax = plt.subplots(figsize=(7, 4))
     bars = ax.bar(
-        ["Dense ANN", "Arthedain SNN"],
+        ["Dense ANN", "SNNTraining SNN"],
         [ann_stats["synops_per_step"], snn_stats["synops_per_step"]],
         color=["#888", "#2563eb"],
         width=0.4,

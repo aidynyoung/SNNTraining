@@ -941,7 +941,7 @@ class TestHDCModelCard:
         card = HDCModelCard(clf)
         s    = card.print_summary()
         assert isinstance(s, str)
-        assert "Arthedain" in s
+        assert "SNNTraining" in s
 
     def test_generate_with_dp_accountant(self):
         clf = _make_trained_clf()

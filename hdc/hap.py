@@ -1,4 +1,4 @@
-"""Hyperdimensional Active Perception (HAP) for Arthedain.
+"""Hyperdimensional Active Perception (HAP) for SNNTraining.
 =====================================================
 Based on Section V-A of Amrouch et al. 2022:
 "Learning Sensorimotor Control with Neuromorphic Sensors:

@@ -1,8 +1,8 @@
 """
-BCI decoding benchmark: Arthedain vs Kalman vs BPTT SNN
+BCI decoding benchmark: SNNTraining vs Kalman vs BPTT SNN
 Usage:
   python experiments/bci_decoding.py --method all --save-results
-  python experiments/bci_decoding.py --method arthedain --dataset indy
+  python experiments/bci_decoding.py --method snntraining --dataset indy
 """
 import sys
 import os
@@ -33,7 +33,7 @@ def pearson_r(preds, targets):
     return float(np.mean(rs)), rs
 
 
-def run_arthedain(stream, input_size, hidden_size, device, lr_readout=5e-3):
+def run_snntraining(stream, input_size, hidden_size, device, lr_readout=5e-3):
     rsnn = RSNN(input_size=input_size, hidden_size=hidden_size, sparse_init=True, sparse_p=0.15, device=device)
     readout = Readout(hidden_size, 2, device=device)
     hebbian = DualHebbianAccumulator(HebbianConfig(
@@ -78,7 +78,7 @@ def run_kalman(stream, input_size):
     return np.array(preds), np.array(targets), elapsed
 
 
-def run_arthedain_gaussian(
+def run_snntraining_gaussian(
     stream,
     input_size:   int,
     hidden_size:  int,
@@ -87,7 +87,7 @@ def run_arthedain_gaussian(
     input_range:  tuple = (-3.0, 3.0),
     lr_readout:   float = 5e-3,
 ):
-    """Arthedain BCI with Gaussian population coding encoder (Pandarinath 2018).
+    """SNNTraining BCI with Gaussian population coding encoder (Pandarinath 2018).
 
     Each input channel (spike count) is expanded from 1 scalar to n_neurons
     Gaussian tuning curve activations. This gives the network a richer temporal
@@ -220,8 +220,8 @@ def save_results(results: dict, save_dir: str = "results"):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--method",
-                        choices=["arthedain", "arthedain-gaussian", "kalman", "bptt", "all"],
-                        default="arthedain")
+                        choices=["snntraining", "snntraining-gaussian", "kalman", "bptt", "all"],
+                        default="snntraining")
     parser.add_argument("--gaussian-neurons", type=int, default=8,
                         help="Neurons per channel for Gaussian tuning encoder")
     parser.add_argument("--dataset", choices=["indy", "synthetic"], default="indy")
@@ -265,18 +265,18 @@ def main():
                     args.input_size)
 
     results = {"device": device, "seed": args.seed, "arrays": {}}
-    methods = (["arthedain", "arthedain-gaussian", "kalman", "bptt"]
+    methods = (["snntraining", "snntraining-gaussian", "kalman", "bptt"]
                if args.method == "all" else [args.method])
 
     for method in methods:
         print(f"\n── Running {method} ──")
         stream, input_size = make_stream()
-        if method == "arthedain":
-            preds, targets, elapsed = run_arthedain(stream, input_size, args.hidden_size, device)
-        elif method == "arthedain-gaussian":
+        if method == "snntraining":
+            preds, targets, elapsed = run_snntraining(stream, input_size, args.hidden_size, device)
+        elif method == "snntraining-gaussian":
             print(f"  Gaussian tuning: {args.gaussian_neurons} neurons/channel  "
                   f"→  {input_size * args.gaussian_neurons} total inputs")
-            preds, targets, elapsed = run_arthedain_gaussian(
+            preds, targets, elapsed = run_snntraining_gaussian(
                 stream, input_size, args.hidden_size, device,
                 n_neurons=args.gaussian_neurons,
             )

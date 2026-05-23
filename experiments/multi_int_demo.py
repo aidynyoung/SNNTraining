@@ -3,7 +3,7 @@ experiments/multi_int_demo.py
 ==============================
 Multi-INT sensor fusion demo — RF + Acoustic + IMU → single HDC decision.
 
-This is the IQT money shot: demonstrates the complete Arthedain stack:
+This is the IQT money shot: demonstrates the complete SNNTraining stack:
   Sensor streams → spike encoding → HDC hypervector → real-time decision
 
 Three sensor modalities are fused simultaneously via hypervector binding
@@ -244,7 +244,7 @@ class MultiINTConfig:
 
 def run_multi_int_demo(cfg: MultiINTConfig) -> Dict:
     print("\n" + "=" * 70)
-    print("  ARTHEDAIN — Multi-INT Fusion Demo  (RF + Acoustic + IMU)")
+    print("  SNNTRAINING — Multi-INT Fusion Demo  (RF + Acoustic + IMU)")
     print("=" * 70)
     print(f"  Modalities: RF (64 neurons) + Acoustic (64) + IMU (36)")
     print(f"  Threat classes: {N_CLASSES}  |  HDC dim: {cfg.dim}")

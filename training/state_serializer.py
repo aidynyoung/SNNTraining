@@ -59,7 +59,7 @@ class StateSerializer:
     Format: Binary blob with JSON header for flexibility.
     """
     
-    MAGIC = b'ARTCHK'  # Arthedain Checkpoint
+    MAGIC = b'ARTCHK'  # SNNTraining Checkpoint
     VERSION = 1
     
     def __init__(self, checkpoint_dir: str = "checkpoints"):

@@ -40,7 +40,7 @@ class TrainerConfig:
 
 
 class OnlineTrainer:
-    """Online streaming trainer for Arthedain SNN."""
+    """Online streaming trainer for SNNTraining SNN."""
 
     def __init__(self, rsnn, readout, hebbian,
                  lr_readout=1e-3, lr_recurrent=5e-5, device=None,

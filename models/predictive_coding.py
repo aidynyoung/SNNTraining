@@ -1,7 +1,7 @@
 """
 predictive_coding.py
 ====================
-Predictive Coding layer for Arthedain SNNs.
+Predictive Coding layer for SNNTraining SNNs.
 
 Implements a layer-local predictive coding unit compatible with the existing
 dual-timescale Hebbian accumulator. Each PCLayer maintains:
@@ -173,7 +173,7 @@ class PCLayer(nn.Module):
             dW_rec = self.cfg.lr_rec * torch.outer(trace_err_norm, signed_err_norm)
             self.W_rec.data.add_(dW_rec)
 
-        # Weight cap (matches Arthedain per-neuron projection, Section III-D)
+        # Weight cap (matches SNNTraining per-neuron projection, Section III-D)
         _cap_weights(self.W_gen, cap=6.0)
         if not self.cfg.tie_weights:
             _cap_weights(self.W_rec, cap=6.0)
@@ -235,7 +235,7 @@ class PCLayer(nn.Module):
 class PCStack(nn.Module):
     """
     Attaches PCLayer instances between every consecutive pair of hidden layers
-    in an existing Arthedain RSNN.
+    in an existing SNNTraining RSNN.
 
     Usage
     -----
@@ -295,7 +295,7 @@ class PCStack(nn.Module):
         Free energy = Σ_layers (prediction_error² / noise_variance)
 
         In predictive processing (Friston 2010), free energy is the objective
-        the brain minimises during perception.  For Arthedain, this serves as:
+        the brain minimises during perception.  For SNNTraining, this serves as:
           - Learning signal: high F → update weights more aggressively
           - Anomaly indicator: F >> baseline → unexpected observation
           - Convergence metric: decreasing F → the model is learning
@@ -350,18 +350,18 @@ class PCStack(nn.Module):
 def _cap_weights(W: nn.Parameter, cap: float = 6.0):
     """
     Per-neuron L2 weight projection (bitshift-implementable on hardware).
-    Matches Arthedain Section III-D weight cap.
+    Matches SNNTraining Section III-D weight cap.
     """
     norms = W.data.norm(dim=1, keepdim=True).clamp(min=1e-8)
     mask  = (norms > cap).float()
     W.data.mul_(1 - mask + mask * cap / norms)
 
 
-def build_pc_stack_for_arthedain(hidden_sizes: list, **kwargs) -> PCStack:
+def build_pc_stack_for_snntraining(hidden_sizes: list, **kwargs) -> PCStack:
     """
     Convenience constructor.  Example:
 
-        pc = build_pc_stack_for_arthedain(
+        pc = build_pc_stack_for_snntraining(
             hidden_sizes=[1024, 512],
             lr_gen=1e-4,
             lr_rec=5e-5,

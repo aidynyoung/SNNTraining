@@ -23,7 +23,7 @@ Reference:
     torchhd (Heddes et al. 2023) JMLR.
     — NeuralHD, DistHD, LeHDC implementations.
 
-Why dimension regeneration is missing from Arthedain:
+Why dimension regeneration is missing from SNNTraining:
 
     Standard HDC encoding is FIXED after initialisation — the random
     projection vectors ω never change regardless of data distribution.

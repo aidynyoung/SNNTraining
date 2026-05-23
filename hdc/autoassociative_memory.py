@@ -1,5 +1,5 @@
 """
-Autoassociative Memory Models for Arthedain
+Autoassociative Memory Models for SNNTraining
 =============================================
 Based on: Kleyko, D., et al. (2017)
 "Neural Distributed Autoassociative Memories: A Survey"

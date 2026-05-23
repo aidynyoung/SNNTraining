@@ -18,7 +18,7 @@ class ModelCheckpoint:
     def __init__(self, save_dir: str = "checkpoints"):
         self.save_dir = Path(save_dir)
         self.save_dir.mkdir(parents=True, exist_ok=True)
-        self.logger = logging.getLogger("arthedain")
+        self.logger = logging.getLogger("snntraining")
     
     def save_checkpoint(
         self,
@@ -221,7 +221,7 @@ def save_training_metrics(
     with open(output_path, 'w') as f:
         json.dump(metrics, f, indent=2)
     
-    logging.getLogger("arthedain").info(f"Metrics saved to {output_path}")
+    logging.getLogger("snntraining").info(f"Metrics saved to {output_path}")
 
 
 def load_training_metrics(filepath: str, save_dir: str = "results") -> Dict[str, list]:
@@ -242,5 +242,5 @@ def load_training_metrics(filepath: str, save_dir: str = "results") -> Dict[str,
     with open(load_path, 'r') as f:
         metrics = json.load(f)
     
-    logging.getLogger("arthedain").info(f"Metrics loaded from {load_path}")
+    logging.getLogger("snntraining").info(f"Metrics loaded from {load_path}")
     return metrics

@@ -6,7 +6,7 @@ from models.predictive_coding import (
     PCLayer,
     PCStack,
     PCConfig,
-    build_pc_stack_for_arthedain,
+    build_pc_stack_for_snntraining,
 )
 from models.hybrid_learner import HybridLearner, HybridConfig
 from models.deep_rsnn import (
@@ -48,7 +48,7 @@ __all__ = [
     "PCLayer",
     "PCStack",
     "PCConfig",
-    "build_pc_stack_for_arthedain",
+    "build_pc_stack_for_snntraining",
     "HybridLearner",
     "HybridConfig",
     "DeepRSNN",

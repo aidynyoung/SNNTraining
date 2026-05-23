@@ -15,7 +15,7 @@ Why SHD matters:
   - Requires temporal sequence discrimination — directly maps to
     acoustic threat signatures and RF time-series
   - Published SOTA: BPTT SNN ~91%, e-prop ~82%, online Hebbian ~74%
-  - Arthedain target: >92% with O(1) memory (competitive with e-prop)
+  - SNNTraining target: >92% with O(1) memory (competitive with e-prop)
 
 Benchmark conditions
 --------------------
@@ -196,7 +196,7 @@ def generate_shd_sequence(
 
 class SNNSequenceClassifier:
     """
-    Online SNN sequence classifier using Arthedain core.
+    Online SNN sequence classifier using SNNTraining core.
 
     Processes one spike train per timestep and classifies using
     the accumulated hidden state at the end of the sequence.
@@ -405,7 +405,7 @@ class SHDBenchmarkConfig:
 
 def run_shd_benchmark(cfg: SHDBenchmarkConfig) -> Dict:
     print("\n" + "=" * 65)
-    print(" Arthedain — Spiking Heidelberg Digits (SHD) Benchmark")
+    print(" SNNTraining — Spiking Heidelberg Digits (SHD) Benchmark")
     print("=" * 65)
     print(f"  Input:  {cfg.input_size} neurons  |  Hidden: {cfg.hidden_size}")
     print(f"  Classes: {cfg.n_classes}  |  Seq len: {SHD_SEQ_LEN} steps")
@@ -738,7 +738,7 @@ def run_shd_benchmark(cfg: SHDBenchmarkConfig) -> Dict:
     print(f"  {'e-prop (Bellec 2020)':<28}  {'~82%':>10}  {'O(1)':>8}  {'No':>8}")
     print(f"  {'ESPP (Graf 2024)':<28}  {'~80%':>10}  {'O(1)':>8}  {'No':>8}")
     print(f"  {'Online Hebbian baseline':<28}  {'~74%':>10}  {'O(1)':>8}  {'No':>8}")
-    print(f"  {'Arthedain (this run)':<28}  {f'{100*accuracy:.1f}%':>10}  {'O(1)':>8}  {'No':>8}")
+    print(f"  {'SNNTraining (this run)':<28}  {f'{100*accuracy:.1f}%':>10}  {'O(1)':>8}  {'No':>8}")
     if cfg.mode == "ensemble-ridge":
         print(f"  {'  (M='+str(cfg.n_ensemble)+' float ensemble, majority vote)':<28}")
 
@@ -764,7 +764,7 @@ def run_shd_benchmark(cfg: SHDBenchmarkConfig) -> Dict:
             "bptt_snn":        0.91,
             "eprop":           0.82,
             "online_hebbian":  0.74,
-            "arthedain":       accuracy,
+            "snntraining":       accuracy,
         },
     }
 

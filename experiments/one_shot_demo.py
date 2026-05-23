@@ -1,7 +1,7 @@
 """
 experiments/one_shot_demo.py
 =============================
-One-shot class addition demo — Arthedain's killer feature vs transformers.
+One-shot class addition demo — SNNTraining's killer feature vs transformers.
 
 Demonstrates:
   1. Train a 10-class HDC classifier on N examples per class
@@ -121,7 +121,7 @@ class OneShotConfig:
 
 def run_one_shot_demo(cfg: OneShotConfig) -> Dict:
     print("\n" + "=" * 70)
-    print("  ARTHEDAIN — One-Shot Class Addition Demo")
+    print("  SNNTRAINING — One-Shot Class Addition Demo")
     print("=" * 70)
     print(f"  Base classes: {cfg.n_base_classes}  |  New (one-shot): {cfg.n_new_classes}")
     print(f"  Train per class: {cfg.n_train}  |  HDC dim: {cfg.dim}")
@@ -235,7 +235,7 @@ def run_one_shot_demo(cfg: OneShotConfig) -> Dict:
     print(f"      Catastrophic forgetting of base classes without replay buffer")
     print(f"      Time: minutes to hours on GPU")
     print()
-    print(f"    HDC (Arthedain):")
+    print(f"    HDC (SNNTraining):")
     print(f"      Adding class {cfg.n_base_classes+1}: bundle ONE hypervector into prototype slot")
     print(f"      Time: {t_oneshot*1000/cfg.n_new_classes:.2f} ms per class")
     print(f"      Forgetting: {100*forgetting:+.2f}% (algebraically impossible to forget)")

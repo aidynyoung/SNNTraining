@@ -439,7 +439,7 @@ class NNToHDCDistiller:
             "teacher_params_bytes": teacher_params * 4,
             "hdc_params_bytes":     hdc_params // 8,
             "size_reduction":       teacher_params * 4 * 8 // max(hdc_params, 1),
-            "energy_reduction_est": 22992,   # Arthedain claim
+            "energy_reduction_est": 22992,   # SNNTraining claim
         }
 
     # ------------------------------------------------------------------

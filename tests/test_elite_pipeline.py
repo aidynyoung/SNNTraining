@@ -1,7 +1,7 @@
 """
 tests/test_elite_pipeline.py
 =============================
-Tests for EliteArthedainPipeline — the top-level Physical AI orchestrator.
+Tests for EliteSNNTrainingPipeline — the top-level Physical AI orchestrator.
 Focuses on v1.45 improvements: TD updates, cognitive map, grid cells,
 status() report, reset(), and end-to-end step behavior.
 """
@@ -9,7 +9,7 @@ status() report, reset(), and end-to-end step behavior.
 from __future__ import annotations
 import pytest
 import torch
-from arthedain.elite_pipeline import EliteArthedainPipeline, PipelineConfig
+from snntraining.elite_pipeline import EliteSNNTrainingPipeline, PipelineConfig
 
 
 # Minimal config to keep tests fast
@@ -32,12 +32,12 @@ def small_cfg():
 
 @pytest.fixture
 def pipe(small_cfg):
-    return EliteArthedainPipeline(small_cfg)
+    return EliteSNNTrainingPipeline(small_cfg)
 
 
 class TestPipelineBasic:
     def test_init_no_crash(self, small_cfg):
-        p = EliteArthedainPipeline(small_cfg)
+        p = EliteSNNTrainingPipeline(small_cfg)
         assert p._step == 0
 
     def test_step_no_crash(self, pipe):
@@ -173,7 +173,7 @@ class TestPipelineGridCells:
             hd_dim=128, use_grid_cells=True, grid_periods=[5.0],
         )
         try:
-            p = EliteArthedainPipeline(cfg)
+            p = EliteSNNTrainingPipeline(cfg)
             if p.use_grid_cells:
                 assert hasattr(p, '_grid_state')
                 assert p._grid_state.shape[0] > 0
@@ -186,7 +186,7 @@ class TestPipelineGridCells:
             hd_dim=128, use_grid_cells=True, grid_periods=[5.0],
         )
         try:
-            p = EliteArthedainPipeline(cfg)
+            p = EliteSNNTrainingPipeline(cfg)
             if not p.use_grid_cells:
                 pytest.skip("Grid cells disabled")
             hv  = (torch.rand(128) >= 0.5).float()

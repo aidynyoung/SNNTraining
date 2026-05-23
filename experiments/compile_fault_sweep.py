@@ -4,7 +4,7 @@ compile_fault_sweep.py
 ======================
 Compile multi-fault-type sweep results into a markdown table.
 
-Reads all results/arthedain_robustness_*.json files and produces
+Reads all results/snntraining_robustness_*.json files and produces
 a comprehensive table showing SNN and HDC accuracy across all
 SpikeFI fault types (Spyrou et al. 2024).
 
@@ -51,14 +51,14 @@ def extract_accuracy(results: dict, config_name: str = "baseline") -> dict:
 
 def compile_sweep(results_dir: str = "results") -> dict:
     """Compile all fault sweep results into a structured dict."""
-    pattern = os.path.join(results_dir, "arthedain_robustness_*.json")
+    pattern = os.path.join(results_dir, "snntraining_robustness_*.json")
     files = glob.glob(pattern)
     
     compiled = {}
     for path in sorted(files):
         basename = os.path.basename(path)
         # Parse filename: artainedain_robustness_{fault_type}_{task}.json
-        parts = basename.replace("arthedain_robustness_", "").replace(".json", "").rsplit("_", 1)
+        parts = basename.replace("snntraining_robustness_", "").replace(".json", "").rsplit("_", 1)
         if len(parts) != 2:
             print(f"  Skipping {basename}: unexpected filename format")
             continue
@@ -85,7 +85,7 @@ def compile_sweep(results_dir: str = "results") -> dict:
 def format_table(compiled: dict) -> str:
     """Format compiled results as a markdown table."""
     lines = []
-    lines.append("# Arthedain — Multi-Fault-Type Robustness Sweep Results")
+    lines.append("# SNNTraining — Multi-Fault-Type Robustness Sweep Results")
     lines.append("")
     lines.append("End-to-end SNN→HDC pipeline under SpikeFI-compatible hardware faults (Spyrou et al. 2024).")
     lines.append("")

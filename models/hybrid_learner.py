@@ -1,14 +1,14 @@
 """
 hybrid_learner.py
 =================
-HybridLearner — unified training wrapper for Arthedain that combines:
+HybridLearner — unified training wrapper for SNNTraining that combines:
 
-  1. Dual-Timescale Hebbian Accumulators (original Arthedain rule)
+  1. Dual-Timescale Hebbian Accumulators (original SNNTraining rule)
   2. Predictive Coding local error signals (PC-SNN / EchoSpike)
 
 The key insight from the literature synthesis:
 
-  The original Arthedain rule uses a GLOBAL broadcast error:
+  The original SNNTraining rule uses a GLOBAL broadcast error:
       e_global(t) = W^T · (y - ŷ)
 
   Predictive coding provides a LOCAL error at each layer interface:
@@ -24,7 +24,7 @@ The key insight from the literature synthesis:
   where α ∈ [0, 1] is the alpha_error parameter per PCLayer.
 
   This gives three operating modes:
-    α = 1.0  →  pure global (original Arthedain)
+    α = 1.0  →  pure global (original SNNTraining)
     α = 0.0  →  pure local PC (fully self-supervised)
     α ∈ (0,1)→  hybrid (default, best of both worlds)
 
@@ -41,7 +41,7 @@ Does NOT grow with sequence length T.
 
 References
 ----------
-- Arthedain paper: Nallani & Shah, arXiv:2509.14447
+- SNNTraining paper: Nallani & Shah, arXiv:2509.14447
 - PC-SNN:          Lan et al. / Wang et al., arXiv:2211.15386
 - EchoSpike ESPP:  Graf et al., arXiv:2405.13976
 - Meta-SpikePropamine eligibility traces: PMC10213417
@@ -54,7 +54,7 @@ import torch.nn as nn
 from dataclasses import dataclass
 from typing import Optional, List, Dict
 
-from .predictive_coding import PCStack, build_pc_stack_for_arthedain
+from .predictive_coding import PCStack, build_pc_stack_for_snntraining
 
 
 # ---------------------------------------------------------------------------
@@ -66,10 +66,10 @@ class HybridConfig:
     """
     Drop-in config for HybridLearner.
 
-    Parameters mirror Arthedain's existing TrainerConfig fields where
+    Parameters mirror SNNTraining's existing TrainerConfig fields where
     possible; new fields are additive only.
     """
-    # --- Existing Arthedain fields (kept for backwards compat) ---
+    # --- Existing SNNTraining fields (kept for backwards compat) ---
     mode: str = "supervised"          # "supervised" | "reward" | "self_supervised"
     lr_readout: float = 2e-3
     lr_recurrent: float = 5e-5
@@ -98,12 +98,12 @@ class HybridConfig:
 
 class HybridLearner(nn.Module):
     """
-    Wraps an existing Arthedain RSNN + OnlineTrainer logic and adds a
+    Wraps an existing SNNTraining RSNN + OnlineTrainer logic and adds a
     PCStack for layer-local error gating.
 
     Designed to slot into the existing training loop with minimal changes:
 
-        # Before (original Arthedain):
+        # Before (original SNNTraining):
         y_pred, error = trainer.step(x, target=y)
 
         # After (HybridLearner):
@@ -128,7 +128,7 @@ class HybridLearner(nn.Module):
         # Build PC stack if hidden_sizes provided
         self.pc_stack: Optional[PCStack] = None
         if cfg.hidden_sizes and len(cfg.hidden_sizes) > 1:
-            self.pc_stack = build_pc_stack_for_arthedain(
+            self.pc_stack = build_pc_stack_for_snntraining(
                 hidden_sizes  = cfg.hidden_sizes,
                 lr_gen        = cfg.pc_lr_gen,
                 lr_rec        = cfg.pc_lr_rec,
@@ -180,7 +180,7 @@ class HybridLearner(nn.Module):
                 spike_list, global_error, pc_errors, alpha
             )
         else:
-            # Pure global path — identical to original Arthedain
+            # Pure global path — identical to original SNNTraining
             self._apply_global_hebbian(global_error)
 
         return y_pred, global_error, pc_errors
@@ -211,7 +211,7 @@ class HybridLearner(nn.Module):
         return torch.zeros_like(y_pred)
 
     def _apply_global_hebbian(self, global_error: torch.Tensor):
-        """Original Arthedain path — calls DualHebbianAccumulator unchanged."""
+        """Original SNNTraining path — calls DualHebbianAccumulator unchanged."""
         if hasattr(self.hebbian, "update"):
             self.hebbian.update(global_error)
 

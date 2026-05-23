@@ -1,7 +1,7 @@
 """
 update_rules_pc.py
 ==================
-Additional update rules for Arthedain that leverage predictive coding errors.
+Additional update rules for SNNTraining that leverage predictive coding errors.
 
 These are designed to be added to training/update_rules.py (or imported
 alongside it). Each rule is a drop-in swappable replacement / extension
@@ -113,7 +113,7 @@ class ESPPRule(nn.Module):
 
     where C_pos, C_neg are EMA spike correlation matrices.
 
-    In the Arthedain streaming context (no explicit phases), we approximate:
+    In the SNNTraining streaming context (no explicit phases), we approximate:
       C_pos ← current spike-spike correlation (real input)
       C_neg ← predicted spike correlation (from PC generative model)
 

@@ -28,7 +28,7 @@ Architecture::
 
     Input A (image)    Input B (audio)    Input C (sensor)
          ↓                   ↓                   ↓
-    ResNet-18          Wav2Vec 2.0          Arthedain SNN
+    ResNet-18          Wav2Vec 2.0          SNNTraining SNN
          ↓                   ↓                   ↓
     AutoBridge          AutoBridge          AutoBridge
          ↓                   ↓                   ↓
@@ -99,7 +99,7 @@ class HVModel(nn.Module):
 
     The wrapped model can be:
     - A pretrained PyTorch nn.Module (ResNet, BERT, Wav2Vec …)
-    - An Arthedain SNN (RSNN + Readout)
+    - An SNNTraining SNN (RSNN + Readout)
     - A pure HDC module (already outputs hypervectors)
     - Any callable that takes a tensor and returns a tensor
 

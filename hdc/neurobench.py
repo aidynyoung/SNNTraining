@@ -809,7 +809,7 @@ def test_evaluator_hdc():
         accuracy=algo.accuracy,
         total_energy_j=1e-6,
         latency_s=1e-4,
-        platform="Arthedain Simulator",
+        platform="SNNTraining Simulator",
     )
 
     report = evaluator.report(algo, sys)

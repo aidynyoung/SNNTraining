@@ -12,7 +12,7 @@ Event cameras (Dynamic Vision Sensors, DVS) produce asynchronous events
 This is the critical ingredient for continuous-time computation:
 
   "Event cameras have NO frame rate — they're fully asynchronous.
-   An Arthedain system with event camera input would be a continuous-time
+   An SNNTraining system with event camera input would be a continuous-time
    analog dynamical system — the exact conditions for super-Turing computation."
   — Turing Completeness framing document
 

@@ -13,7 +13,7 @@ Reference:
     Rahimi & Recht (2007) "Random Features for Large-Scale Kernel Machines" NeurIPS.
     — Foundation for VecKM's random Fourier feature approach.
 
-Why VecKM matters for Arthedain (Physical AI):
+Why VecKM matters for SNNTraining (Physical AI):
 
     Standard 3D point cloud processing (PointNet, PointNet++, Point Transformer):
         - Requires explicit k-NN grouping: O(N × K × d) cost
@@ -62,7 +62,7 @@ This module implements:
 
 4. LiDAREncoder
    — Specialised for LiDAR scan data (2D range images + depth)
-   — Integrates with EliteArthedainPipeline for drone obstacle detection
+   — Integrates with EliteSNNTrainingPipeline for drone obstacle detection
 """
 
 from __future__ import annotations

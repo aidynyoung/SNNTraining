@@ -51,7 +51,7 @@ Modules:
 4. HDCSequenceAttention
    ── Temporal sequence attention: attend to past N states
    ── Online: stream-compatible, O(D) per step
-   ── Used in EliteArthedainPipeline for temporal context
+   ── Used in EliteSNNTrainingPipeline for temporal context
 
 5. CrossModalHDCAttention
    ── Cross-modal: queries from one modality, keys/values from another

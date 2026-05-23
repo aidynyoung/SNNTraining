@@ -32,7 +32,7 @@ suggested neural alternatives with their HDC-native equivalents:
 │                      │                      │ (Schlegel 2024)              │
 └──────────────────────┴──────────────────────┴──────────────────────────────┘
 
-Literature grounding (Zotero collection JTV8PX3T):
+Literature grounding (published HDC/VSA literature):
   - Rahimi 2017        (IEEE 7942066) — random projection, level HVs
   - Schlegel 2024      (weighted_superposition.py) — learnable bundling weights
   - Kleyko/Renner 2022 (resonator.py) — resonator as HDC attractor
@@ -1056,7 +1056,7 @@ class HybridPhysicalAIPipeline:
         Checks for degenerate states (collapsed ensemble, frozen weights,
         zero-activity sensors) and returns structured diagnostics.
 
-        Useful for monitoring deployed Arthedain instances without
+        Useful for monitoring deployed SNNTraining instances without
         inspecting internal tensors.
         """
         ws = self.adaptive_fusion.weight_dict(self.sensor_names)

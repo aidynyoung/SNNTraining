@@ -3,7 +3,7 @@ experiments/threat_detection.py
 ================================
 Synthetic multi-domain threat classification benchmark.
 
-Demonstrates Arthedain as a defense-grade edge intelligence system by
+Demonstrates SNNTraining as a defense-grade edge intelligence system by
 classifying four threat types from RF + acoustic sensor streams, under:
   - Concept drift  (environment changes mid-deployment)
   - Adversarial perturbation (jamming / spoofing)
@@ -176,7 +176,7 @@ class ThreatBenchmarkConfig:
 
 def run_threat_benchmark(cfg: ThreatBenchmarkConfig) -> Dict:
     print("\n" + "=" * 65)
-    print(" Arthedain Threat Detection Benchmark")
+    print(" SNNTraining Threat Detection Benchmark")
     print("=" * 65)
 
     n_classes = cfg.n_threats + 1   # threats + background
@@ -358,7 +358,7 @@ def run_threat_benchmark(cfg: ThreatBenchmarkConfig) -> Dict:
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Arthedain threat detection benchmark")
+    parser = argparse.ArgumentParser(description="SNNTraining threat detection benchmark")
     parser.add_argument("--n-threats",   type=int,   default=4)
     parser.add_argument("--T",           type=int,   default=500)
     parser.add_argument("--hidden",      type=int,   default=128)

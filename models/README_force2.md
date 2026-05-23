@@ -205,9 +205,9 @@ Expected results (from paper):
 
 4. **Skip Logic**: RLS updates are skipped when error is below threshold to save computation.
 
-## Comparison to Original Arthedain
+## Comparison to Original SNNTraining
 
-| Feature | Original Arthedain | FORCE2 |
+| Feature | Original SNNTraining | FORCE2 |
 |---------|-------------------|--------|
 | Learning Rule | Dual-timescale Hebbian | RLS + Chaos |
 | Spectral Radius | Usually < 1 | 1.0-1.8 |
@@ -216,5 +216,5 @@ Expected results (from paper):
 | Best For | BCI decoding | Temporal patterns |
 | Memory | O(P) eligibility | O(N²) RLS |
 
-Use **Arthedain (Hebbian)** for online BCI decoding with O(1) memory.
+Use **SNNTraining (Hebbian)** for online BCI decoding with O(1) memory.
 Use **FORCE2** for learning complex temporal patterns (oscillators, chaos, songs).

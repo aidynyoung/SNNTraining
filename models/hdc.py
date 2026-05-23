@@ -1,4 +1,4 @@
-"""HDC Core for Arthedain. Brain-inspired high-dimensional vector computing.
+"""HDC Core for SNNTraining. Brain-inspired high-dimensional vector computing.
 Based on: Amrouch et al. 2022; Schlegel et al. 2022, 2024, 2025; Sutor et al. 2019, 2020, 2022, 2025;
 Kinavuidi 2025; Snyder 2025; Vergés Boncompte 2025.
 

@@ -2,7 +2,7 @@
 test_hdc_first_principles.py
 =============================
 Comprehensive tests validating every first principle from:
-- Zotero Collection (enotrium): 1,582 papers on HDC/VSA/SNN
+- 1500+ papers on HDC/VSA/SNN (see research/hdc_literature_review.md)
 - Schlegel et al. (2022): VSA comparison (MAP, FHRR, BSC)
 - Sutor et al. (2018-2025): Vector semantics, HyPE, HD-Glue
 - Vergés Boncompte (2025): RefineHD, HDCC Compiler, PhD dissertation
@@ -11,7 +11,7 @@ Comprehensive tests validating every first principle from:
 - Amrouch, Imani, Sutor (2022): Brain-inspired HDC for edge AI
 - Cardiff University (orca.cardiff.ac.uk/150097): HDC principles
 
-These tests ensure Arthedain correctly implements the mathematical
+These tests ensure SNNTraining correctly implements the mathematical
 foundations of Hyperdimensional Computing / Vector Symbolic Architectures.
 """
 
@@ -47,7 +47,7 @@ from hdc.cognitive_map import (
     RoleFillerBinding, WorkflowEncoder, CognitiveMapMemory,
 )
 from hdc.world_model import (
-    WorldModelConfig, ArthedainWorldModel, PredictiveCodingModule,
+    WorldModelConfig, SNNTrainingWorldModel, PredictiveCodingModule,
     TemporalEncoder, HDCAttention, MultiModalFusion, SkillTransferModule,
 )
 from hdc.weighted_superposition import (
@@ -647,7 +647,7 @@ class TestWorldModel:
     """Validate world model against Physical AI first principles."""
 
     def test_world_model_initialization(self):
-        """ArthedainWorldModel initializes correctly."""
+        """SNNTrainingWorldModel initializes correctly."""
         config = WorldModelConfig(
             n_sensors=4,
             sensor_dim=16,
@@ -657,7 +657,7 @@ class TestWorldModel:
             prediction_horizon=5,
             temporal_window=20,
         )
-        model = ArthedainWorldModel(config)
+        model = SNNTrainingWorldModel(config)
         assert model.config.n_sensors == 4
         assert model.config.hd_dim == HD_DIM
 
@@ -672,7 +672,7 @@ class TestWorldModel:
             prediction_horizon=5,
             temporal_window=20,
         )
-        model = ArthedainWorldModel(config)
+        model = SNNTrainingWorldModel(config)
         sensor_readings = torch.randn(1, 4, 16)
         output = model(sensor_readings, train=False)
         assert 'world_state' in output
@@ -693,7 +693,7 @@ class TestWorldModel:
             temporal_window=20,
             learning_rate=0.1,
         )
-        model = ArthedainWorldModel(config)
+        model = SNNTrainingWorldModel(config)
         shifts = []
         for t in range(50):
             sensor_readings = torch.randn(1, 4, 16)
@@ -750,7 +750,7 @@ class TestWorldModel:
             n_projections=4, n_phasors=32,
             prediction_horizon=5, temporal_window=20,
         )
-        model = ArthedainWorldModel(config)
+        model = SNNTrainingWorldModel(config)
         for _ in range(10):
             sensor_readings = torch.randn(1, 4, 16)
             model(sensor_readings, train=False)

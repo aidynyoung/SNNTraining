@@ -6,7 +6,7 @@ Based on: Kleyko, D., et al. (2023)
 IEEE Circuits and Systems Magazine, 23(2), 8-33 and 23(3), 10-34.
 
 This module implements the missing models and data transformations
-from the comprehensive Kleyko 2023 survey that are not yet in Arthedain:
+from the comprehensive Kleyko 2023 survey that are not yet in SNNTraining:
 
 Part I - Models and Data Transformations:
 1. **N-gram Encoding** — Fixed-length subsequence encoding for sequences

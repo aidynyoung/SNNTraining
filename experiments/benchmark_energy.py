@@ -1,8 +1,8 @@
 """
-benchmark_energy.py — SynOp counting and energy estimation for Arthedain.
+benchmark_energy.py — SynOp counting and energy estimation for SNNTraining.
 
 Compares estimated energy per inference across:
-  - Arthedain (SNN with sparse recurrent weights)
+  - SNNTraining (SNN with sparse recurrent weights)
   - Equivalent MLP (same hidden size)
   - Reference Transformer (tiny, for scale comparison)
 
@@ -42,8 +42,8 @@ ENERGY_SYNOP_PJ = 0.9    # pJ per synaptic operation (spike-driven)
 ENERGY_ACTIVATION_PJ = 0.4  # pJ per activation (comparison + pass-through)
 
 
-def estimate_arthedain_energy(rsnn: RSNN, n_steps: int) -> dict:
-    """Estimate Arthedain energy consumption from SynOp counts.
+def estimate_snntraining_energy(rsnn: RSNN, n_steps: int) -> dict:
+    """Estimate SNNTraining energy consumption from SynOp counts.
 
     1. Count total SynOps across n_steps
     2. Compute average SynOps per inference
@@ -147,9 +147,9 @@ def estimate_transformer_energy(input_size: int, hidden_size: int, n_heads: int 
     }
 
 
-def run_arthedain_benchmark(input_size: int, hidden_size: int,
+def run_snntraining_benchmark(input_size: int, hidden_size: int,
                              n_steps: int, device: torch.device) -> dict:
-    """Run Arthedain on a synthetic stream and count SynOps."""
+    """Run SNNTraining on a synthetic stream and count SynOps."""
     rsnn = RSNN(config=RSNNConfig(
         input_size=input_size,
         hidden_size=hidden_size,
@@ -167,13 +167,13 @@ def run_arthedain_benchmark(input_size: int, hidden_size: int,
         x = torch.randn(input_size, device=device) * 0.5
         _ = rsnn.forward(x)
 
-    energy = estimate_arthedain_energy(rsnn, n_steps)
-    energy["architecture"] = f"Arthedain(hidden={hidden_size}, sparse=15%)"
+    energy = estimate_snntraining_energy(rsnn, n_steps)
+    energy["architecture"] = f"SNNTraining(hidden={hidden_size}, sparse=15%)"
     return energy
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Energy benchmark for Arthedain")
+    parser = argparse.ArgumentParser(description="Energy benchmark for SNNTraining")
     parser.add_argument("--input-size", type=int, default=100)
     parser.add_argument("--hidden-size", type=int, default=128)
     parser.add_argument("--steps", type=int, default=5000)
@@ -182,7 +182,7 @@ def main():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     print("=" * 70)
-    print("Arthedain Energy Benchmark")
+    print("SNNTraining Energy Benchmark")
     print("=" * 70)
     print(f"Input size:  {args.input_size}")
     print(f"Hidden size: {args.hidden_size}")
@@ -191,9 +191,9 @@ def main():
     print(f"Technology:  45nm CMOS (Horowitz ISSCC 2014)")
     print()
 
-    # 1. Arthedain
-    print("--- Arthedain (SNN with sparse LIF reservoir) ---")
-    ae = run_arthedain_benchmark(
+    # 1. SNNTraining
+    print("--- SNNTraining (SNN with sparse LIF reservoir) ---")
+    ae = run_snntraining_benchmark(
         args.input_size, args.hidden_size, args.steps, device)
     for k, v in ae.items():
         print(f"  {k}: {v}")
@@ -219,13 +219,13 @@ def main():
     mlp_nj = float(me["total_energy_nj_per_inference"])
     xfmr_nj = float(xf["total_energy_nj_per_inference"])
 
-    print(f"  Arthedain:        {ae_nj:.4f} nJ/inference")
+    print(f"  SNNTraining:        {ae_nj:.4f} nJ/inference")
     print(f"  MLP:              {mlp_nj:.4f} nJ/inference")
     print(f"  Transformer:      {xfmr_nj:.4f} nJ/inference")
 
     if ae_nj > 0:
-        print(f"\n  Arthedain vs MLP:         {mlp_nj/ae_nj:.1f}x lower energy")
-        print(f"  Arthedain vs Transformer: {xfmr_nj/ae_nj:.1f}x lower energy")
+        print(f"\n  SNNTraining vs MLP:         {mlp_nj/ae_nj:.1f}x lower energy")
+        print(f"  SNNTraining vs Transformer: {xfmr_nj/ae_nj:.1f}x lower energy")
 
     # Check synops per inference for brief
     synops_per_inf = float(ae["synops_per_inference"])

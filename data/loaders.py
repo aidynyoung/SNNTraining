@@ -166,7 +166,7 @@ def load_mc_maze(
 
 # ---------------------------------------------------------------------------
 # Icarus soil telemetry encoder
-# Converts per-cell analyte dict → spike tensor for Arthedain RSNN inference.
+# Converts per-cell analyte dict → spike tensor for SNNTraining RSNN inference.
 # Used by icarus-dashboard/api/simulation.py via OnlineAnomalyDetector.
 # ---------------------------------------------------------------------------
 

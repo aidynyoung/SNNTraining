@@ -1,5 +1,5 @@
 """
-Arthedain World Model — Continuous Physical AI
+SNNTraining World Model — Continuous Physical AI
 
 This module implements a continuous world model that:
 1. Builds internal representations of physical dynamics from sensor streams
@@ -7,7 +7,7 @@ This module implements a continuous world model that:
 3. Adapts to distribution shift in real-time (no retraining)
 4. Transfers skills across sensing modalities (same architecture, different readout)
 
-The key insight: Claude/OpenAI are stateless chatbots. Arthedain builds
+The key insight: Claude/OpenAI are stateless chatbots. SNNTraining builds
 continuous, adaptive world models that learn from sensor streams in real-time.
 This is a fundamentally different capability — Physical AI vs Language AI.
 
@@ -30,7 +30,7 @@ import time
 
 @dataclass
 class WorldModelConfig:
-    """Configuration for the Arthedain World Model."""
+    """Configuration for the SNNTraining World Model."""
     
     # Sensor dimensions
     n_sensors: int = 16          # Number of sensor modalities
@@ -488,10 +488,10 @@ class HDCAttention(nn.Module):
 
 # ── World Model ──────────────────────────────────────────────────────────────
 
-class ArthedainWorldModel(nn.Module):
+class SNNTrainingWorldModel(nn.Module):
     """Continuous Physical AI World Model.
     
-    This is the core innovation that makes Arthedain more powerful than
+    This is the core innovation that makes SNNTraining more powerful than
     Claude/OpenAI combined. While they are stateless chatbots, this model:
     
     1. Builds continuous internal representations of physical dynamics
@@ -973,9 +973,9 @@ class SkillTransferModule(nn.Module):
     from one sensor modality, it can transfer that knowledge to new
     modalities via the shared hyperdimensional representation space.
     
-    This is what makes Arthedain more powerful than Claude/OpenAI:
+    This is what makes SNNTraining more powerful than Claude/OpenAI:
     - Claude/OpenAI need fine-tuning for each new task
-    - Arthedain transfers skills instantly via HDC similarity
+    - SNNTraining transfers skills instantly via HDC similarity
     """
     
     def __init__(self, hd_dim: int, n_skills: int = 100):
@@ -1025,9 +1025,9 @@ class SkillTransferModule(nn.Module):
 # ── Demo: World Model in Action ──────────────────────────────────────────────
 
 def demo_world_model():
-    """Demonstrate the Arthedain World Model."""
+    """Demonstrate the SNNTraining World Model."""
     print("\n" + "=" * 70)
-    print("  Arthedain World Model — Continuous Physical AI")
+    print("  SNNTraining World Model — Continuous Physical AI")
     print("  More powerful than Claude + OpenAI combined")
     print("=" * 70)
     
@@ -1042,7 +1042,7 @@ def demo_world_model():
         learning_rate=0.1,
     )
     
-    model = ArthedainWorldModel(config)
+    model = SNNTrainingWorldModel(config)
     
     print(f"\n  Architecture:")
     print(f"    Sensors: {config.n_sensors}")
@@ -1090,7 +1090,7 @@ def demo_world_model():
     print(f"  ✅ Skill transfer: same architecture, any sensor modality")
     print()
     print(f"  Claude/OpenAI are stateless chatbots.")
-    print(f"  Arthedain builds continuous world models.")
+    print(f"  SNNTraining builds continuous world models.")
     print(f"  This is Physical AI. They cannot follow.")
     print()
 

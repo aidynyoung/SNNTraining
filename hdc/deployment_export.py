@@ -422,7 +422,7 @@ class HDCModelCard:
         arch = card["architecture"]
         lines = [
             "╔══════════════════════════════════════════════════════╗",
-            "║         Arthedain HDC Model Card                     ║",
+            "║         SNNTraining HDC Model Card                     ║",
             "╠══════════════════════════════════════════════════════╣",
             f"║  Classes: {arch['n_classes']:<3}  Features: {arch['n_features']:<5}  Dim: {arch['hd_dim']:<5}    ║",
             f"║  Model size: {arch['model_bits']} bits = {arch['model_bits']//8} bytes             ║",

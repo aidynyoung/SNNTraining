@@ -15,7 +15,7 @@ Reference:
      Robust Inference" arXiv:2601.21222
 
     The FireFly-P pipeline: detect → diagnose → repair → verify.
-    Arthedain maps this as:
+    SNNTraining maps this as:
         detect   = ErrorMasker.error_rate > threshold
         diagnose = HDCCorrector.detect_anomaly (similarity < threshold)
         repair   = HDCCorrector.repair_weights (PI-controlled correction)

@@ -333,7 +333,7 @@ python experiments/bci_decoding.py --method all --seed 42
 python experiments/benchmark_energy.py
 
 # Fault tolerance: accuracy under stuck-at-0 hardware faults
-python experiments/arthedain_robustness.py --fault-type stuck_at_0
+python experiments/snntraining_robustness.py --fault-type stuck_at_0
 
 # FORCE training benchmark
 python experiments/force2_benchmark.py
@@ -374,7 +374,7 @@ Phase coding (`hdc/spike_coding.py`) achieves 6.64 bits/spike — 6.6× more inf
 
 | Platform | Power | Status |
 |----------|-------|--------|
-| Artix-7 FPGA (10 MHz) | ~2.5 mW | Synthesis-validated Verilog (`hardware/arthedain_lif.v`) |
+| Artix-7 FPGA (10 MHz) | ~2.5 mW | Synthesis-validated Verilog (`hardware/snntraining_lif.v`) |
 | Intel Loihi 2 | ~8 pJ/inference | Lava export ready (`hardware/loihi_mapper.py`) |
 | STM32H7 | ~1.2 mW | Binary export ready (`hardware/export.py`) |
 
@@ -419,9 +419,9 @@ SNNTraining/
 │   ├── benchmark_neuromorphic.py   # SHD 20-class
 │   ├── bci_decoding.py             # BCI velocity decoding
 │   ├── benchmark_energy.py         # nJ/inference comparison
-│   └── arthedain_robustness.py     # Fault tolerance sweeps
+│   └── snntraining_robustness.py     # Fault tolerance sweeps
 ├── hardware/
-│   ├── arthedain_lif.v     # Synthesisable Verilog LIF
+│   ├── snntraining_lif.v     # Synthesisable Verilog LIF
 │   ├── loihi_mapper.py     # Intel Loihi 2 Lava export
 │   └── export.py           # MCU binary export
 ├── runs/

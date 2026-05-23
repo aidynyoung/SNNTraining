@@ -176,7 +176,7 @@ class ErrorMasker(nn.Module):
     Learnable error masking layer for HDC models.
     
     Applies masking based on learned error patterns and can be
-    combined with the Hebbian learning in arthedain.
+    combined with the Hebbian learning in snntraining.
     
     Attributes:
         config: ErrorMaskingConfig with hyperparameters

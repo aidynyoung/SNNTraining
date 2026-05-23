@@ -1,9 +1,9 @@
 """
-arthedain_robustness.py
+snntraining_robustness.py
 =======================
 End-to-end robustness experiment: SNN → HDC pipeline under hardware faults.
 
-This is the strongest test of the Arthedain integration thesis:
+This is the strongest test of the SNNTraining integration thesis:
 it measures how HDC error correction (ECC) and fault-tolerant encoding
 protect the entire SNN→HDC pipeline when the SNN's weight memory is
 corrupted by realistic hardware faults.
@@ -41,9 +41,9 @@ Architecture
 
 Usage
 -----
-    python experiments/arthedain_robustness.py --error-rates 0 1e-6 1e-4 1e-2
-    python experiments/arthedain_robustness.py --quick
-    python experiments/arthedain_robustness.py --fault-type stuck_at_0 --persistent
+    python experiments/snntraining_robustness.py --error-rates 0 1e-6 1e-4 1e-2
+    python experiments/snntraining_robustness.py --quick
+    python experiments/snntraining_robustness.py --fault-type stuck_at_0 --persistent
 """
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
@@ -873,7 +873,7 @@ def print_results_table(results: dict):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="End-to-end Arthedain robustness experiment")
+        description="End-to-end SNNTraining robustness experiment")
     parser.add_argument("--error-rates", type=float, nargs="+",
                         default=[0, 1e-6, 1e-5, 1e-4, 1e-3, 1e-2])
     parser.add_argument("--T-train", type=int, default=4000)
@@ -948,7 +948,7 @@ def main():
     )
 
     print("=" * 60)
-    print("Arthedain End-to-End Robustness Experiment")
+    print("SNNTraining End-to-End Robustness Experiment")
     print("=" * 60)
     print(f"  Hidden size: {cfg.hidden_size}")
     print(f"  HDC dim:     {cfg.hdc_dim}")
@@ -969,7 +969,7 @@ def main():
 
     if args.save:
         os.makedirs("results", exist_ok=True)
-        path = "results/arthedain_robustness.json"
+        path = "results/snntraining_robustness.json"
         # Convert results to JSON-safe format (tensors → floats)
         def to_json_safe(obj):
             if isinstance(obj, dict):

@@ -1,10 +1,10 @@
 """
 unified_trainer.py
 ==================
-Unified trainer for Arthedain SNNs supporting all learning paradigms.
+Unified trainer for SNNTraining SNNs supporting all learning paradigms.
 
 Integrates:
-  - Dual-timescale Hebbian (original Arthedain)
+  - Dual-timescale Hebbian (original SNNTraining)
   - e-prop with eligibility traces
   - FORCE / RLS online learning
   - Dynamics-based fast learning (no weight changes)
@@ -40,7 +40,7 @@ from models.hebbian import DualHebbianAccumulator, HebbianConfig
 from training.eprop import EPropConfig, EPropTrainer, make_eprop_trainer
 from training.force_online import FORCEConfig, FORCETrainer, make_force_trainer
 from training.dynamics_learning import DynamicsLearningConfig, DynamicsLearner, make_dynamics_learner
-from models.predictive_coding import PCStack, build_pc_stack_for_arthedain, PCConfig
+from models.predictive_coding import PCStack, build_pc_stack_for_snntraining, PCConfig
 
 
 @dataclass
@@ -54,7 +54,7 @@ class UnifiedConfig:
     lr_readout: float = 2e-3
     lr_recurrent: float = 5e-5
     
-    # Hebbian parameters (original Arthedain)
+    # Hebbian parameters (original SNNTraining)
     hebbian_tau_fast: float = 5.0
     hebbian_tau_slow: float = 50.0
     hebbian_alpha: float = 0.7  # fast trace weight
@@ -108,7 +108,7 @@ class UnifiedConfig:
 
 class UnifiedTrainer:
     """
-    Unified trainer supporting all Arthedain learning paradigms.
+    Unified trainer supporting all SNNTraining learning paradigms.
     
     Automatically manages:
       - Mode-specific state (eligibility traces, RLS matrices, etc.)
@@ -175,7 +175,7 @@ class UnifiedTrainer:
         cfg = self.cfg
         
         if cfg.mode == "hebbian" or cfg.mode == "hybrid":
-            # Original Arthedain dual-timescale Hebbian
+            # Original SNNTraining dual-timescale Hebbian
             hidden_size = cfg.hidden_sizes[0] if len(cfg.hidden_sizes) == 1 else cfg.hidden_sizes[-1]
             hebbian = DualHebbianAccumulator(
                 shape=(hidden_size, hidden_size),
@@ -221,7 +221,7 @@ class UnifiedTrainer:
     def _init_pc_stack(self):
         """Initialize predictive coding stack for local errors."""
         if len(self.cfg.hidden_sizes) > 1 or self.cfg.pc_use_stack:
-            self.pc_stack = build_pc_stack_for_arthedain(
+            self.pc_stack = build_pc_stack_for_snntraining(
                 hidden_sizes=self.cfg.hidden_sizes,
                 lr_gen=self.cfg.pc_lr_gen,
                 lr_rec=self.cfg.pc_lr_rec,
@@ -292,7 +292,7 @@ class UnifiedTrainer:
         x: torch.Tensor,
         target: Optional[torch.Tensor],
     ) -> Tuple[torch.Tensor, torch.Tensor]:
-        """Original Arthedain dual-timescale Hebbian step."""
+        """Original SNNTraining dual-timescale Hebbian step."""
         # Forward
         if hasattr(self.rsnn, 'forward_single'):
             spikes = self.rsnn.forward_single(x)

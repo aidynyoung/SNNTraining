@@ -20,9 +20,9 @@ Reference:
     sinabs (SynSense 2023) — SNN library; energy-efficient spike representations.
     https://github.com/synsense/sinabs
 
-Why advanced spike coding matters for Arthedain:
+Why advanced spike coding matters for SNNTraining:
 
-    Current Arthedain SNN uses BINARY spikes only (0 or 1 per timestep).
+    Current SNNTraining SNN uses BINARY spikes only (0 or 1 per timestep).
     This represents 1 bit of information per neuron per step.
 
     Advanced coding schemes represent MORE information per spike:
@@ -34,7 +34,7 @@ Why advanced spike coding matters for Arthedain:
     Population coding: which neurons fire → D × log2(N) bits total
     Burst coding:    number of spikes in burst → log2(K) bits per burst
 
-    Energy comparison (Arthedain goal: max info per pJ):
+    Energy comparison (SNNTraining goal: max info per pJ):
         Binary rate:    1 bit / (τ × E_spike)
         Phase coding:   4-8 bits / E_spike  [4-8× more efficient]
         Temporal coding: log2(T) bits / E_spike  [up to 10 bits at T=1000]
@@ -438,7 +438,7 @@ class BurstEncoder:
 
     Key advantage: highly fault tolerant.
     Even if 50% of spikes are lost, burst size can often still be decoded.
-    This is critical for Arthedain's 100% accuracy under hardware faults.
+    This is critical for SNNTraining's 100% accuracy under hardware faults.
 
     Args:
         max_burst: Maximum burst size K (default 7 = 3-bit encoding)

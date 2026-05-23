@@ -303,7 +303,7 @@ def compare_classifier_robustness(
     Compare robustness certificates across multiple HDC classifiers.
 
     Useful for: ablation studies (dim 512 vs 2048 vs 8192), comparing
-    different encoding strategies, or showing Arthedain robustness advantage.
+    different encoding strategies, or showing SNNTraining robustness advantage.
 
     Args:
         classifiers: List of classifier dicts, each with:
@@ -408,7 +408,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     print("\n" + "=" * 60)
-    print("  Arthedain — Formal Adversarial Robustness Certificate")
+    print("  SNNTraining — Formal Adversarial Robustness Certificate")
     print("=" * 60)
 
     # Single-query certificate

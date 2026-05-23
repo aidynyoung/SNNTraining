@@ -1,7 +1,7 @@
 """
 models/anomaly_detector.py
 ==========================
-Online anomaly detector for the Arthedain SNN.
+Online anomaly detector for the SNNTraining SNN.
 
 Threat detection in the field requires the network to flag inputs that
 deviate from the learned distribution — without cloud connectivity or

@@ -1,5 +1,5 @@
 """
-Arthedain Drone Control — HDC-Based Autonomous Flight with Self-Learning
+SNNTraining Drone Control — HDC-Based Autonomous Flight with Self-Learning
 =========================================================================
 Based on: Ge, L. and Parhi, K.K. (2020)
 "Classification Using Hyperdimensional Computing: A Review"
@@ -11,7 +11,7 @@ IEEE Access, 10, 125456-125471. DOI: 10.1109/ACCESS.2022.3225430
 
 Architecture:
 ┌─────────────────────────────────────────────────────────────────────┐
-│                    Arthedain Drone Control                           │
+│                    SNNTraining Drone Control                           │
 ├─────────────────────────────────────────────────────────────────────┤
 │  Sensors → HDC Encoding → State Classification → Action Selection  │
 │     ↑                                        ↓                      │
